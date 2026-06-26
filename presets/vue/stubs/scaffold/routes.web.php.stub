@@ -1,0 +1,11 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\Route;
+use $PHP_NAMESPACE$\Http\Controllers\LicenseController;
+
+// Loaded by the preset provider inside the configured prefix/name/middleware group.
+Route::get('status', [LicenseController::class, 'status'])->name('status');
+Route::post('activate', [LicenseController::class, 'activate'])->name('activate');
+Route::post('deactivate', [LicenseController::class, 'deactivate'])->name('deactivate');

@@ -1,0 +1,18 @@
+import { createApp } from 'vue'
+import LicenseForm from './components/LicenseForm.vue'
+
+/** Register <LicenseForm> globally on an existing Vue app. */
+export function registerLicenseVerifier(app) {
+    app.component('LicenseForm', LicenseForm)
+}
+
+/** Mount the form standalone onto the [#lv-license-app] element. */
+export function mountLicenseVerifier(selector = '#lv-license-app') {
+    const el = document.querySelector(selector)
+    if (!el) return null
+    const app = createApp(LicenseForm, { ...el.dataset })
+    app.mount(el)
+    return app
+}
+
+export default LicenseForm

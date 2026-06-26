@@ -1,0 +1,83 @@
+<template>
+  <div class="lv-license-form">
+    <p v-if="loading" class="lv-loading">Loading…</p>
+
+    <div v-else-if="verified" class="lv-licensed">
+      <p>{{ t.licensed }}</p>
+      <button class="lv-btn lv-btn--danger" :disabled="submitting" @click="deactivate">{{ t.deactivate }}</button>
+    </div>
+
+    <form v-else @submit.prevent="activate">
+      <div v-for="field in fields" :key="field.name" class="lv-field">
+        <label class="lv-field__label">{{ field.label }}</label>
+        <input class="lv-field__input" :type="field.type || 'text'" v-model="form[field.name]" />
+      </div>
+      <button class="lv-btn lv-btn--primary" type="submit" :disabled="submitting">{{ t.activate }}</button>
+      <p v-if="message" class="lv-message" :class="ok ? 'is-success' : 'is-error'">{{ message }}</p>
+    </form>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'LicenseForm',
+  props: {
+    statusUrl: { type: String, required: true },
+    activateUrl: { type: String, required: true },
+    deactivateUrl: { type: String, default: '' },
+    csrf: { type: String, default: '' },
+  },
+  data() {
+    return {
+      loading: true, verified: false, submitting: false, ok: false, message: '',
+      fields: [], form: {},
+      t: { activate: 'Activate license', deactivate: 'Deactivate', licensed: 'Your license is active.' },
+    }
+  },
+  mounted() {
+    this.fetchStatus()
+  },
+  methods: {
+    headers(json) {
+      const h = { 'X-CSRF-TOKEN': this.csrf, Accept: 'application/json' }
+      if (json) h['Content-Type'] = 'application/json'
+      return h
+    },
+    async fetchStatus() {
+      this.loading = true
+      try {
+        const res = await fetch(this.statusUrl, { headers: this.headers(false) })
+        const payload = await res.json()
+        this.verified = !!payload.valid
+        this.fields = payload.fields || [{ name: 'license_key', label: 'License key', type: 'text' }]
+      } finally {
+        this.loading = false
+      }
+    },
+    async activate() {
+      this.submitting = true
+      try {
+        const res = await fetch(this.activateUrl, { method: 'POST', headers: this.headers(true), body: JSON.stringify(this.form) })
+        const payload = await res.json()
+        this.ok = res.ok
+        this.message = payload.message || ''
+        if (res.ok) this.verified = true
+      } finally {
+        this.submitting = false
+      }
+    },
+    async deactivate() {
+      this.submitting = true
+      try {
+        const res = await fetch(this.deactivateUrl, { method: 'POST', headers: this.headers(true) })
+        if (res.ok) {
+          this.verified = false
+          this.form = {}
+        }
+      } finally {
+        this.submitting = false
+      }
+    },
+  },
+}
+</script>

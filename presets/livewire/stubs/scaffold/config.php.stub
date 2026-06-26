@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    /*
+    | Livewire component aliases (used in <livewire:...> tags).
+    */
+    'components' => [
+        'activation_form' => env('LICENSE_VERIFIER_LIVEWIRE_ACTIVATION_FORM', 'lv-activation-form'),
+        'status_widget' => env('LICENSE_VERIFIER_LIVEWIRE_STATUS_WIDGET', 'lv-status-widget'),
+    ],
+
+    /*
+    | Authorization gate for managing the license, or null to allow anyone.
+    */
+    'permission' => env('LICENSE_VERIFIER_LIVEWIRE_PERMISSION'),
+];

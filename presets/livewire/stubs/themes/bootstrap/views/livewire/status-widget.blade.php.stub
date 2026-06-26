@@ -1,0 +1,3 @@
+<div>
+    <span class="badge rounded-pill {{ $valid ? 'text-bg-success' : 'text-bg-danger' }}">{{ $status }}</span>
+</div>

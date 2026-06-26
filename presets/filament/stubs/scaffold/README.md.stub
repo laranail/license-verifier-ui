@@ -1,0 +1,29 @@
+# $COMPOSER_NAME$
+
+A generated **license-verifier UI** package — $PRESET_LABEL$ (`$THEME` theme).
+It extends [`$BASE_PACKAGE$`](https://opensource.simtabi.com/license-verifier-ui-filament/),
+which carries the logic and ships updates; this package is **yours to own and edit**.
+
+## What you own
+
+- `src/Providers/` — the package service provider (`$PROVIDER_FQCN`), auto-discovered by Laravel.
+- `src/LicenseVerifierPlugin.php` — the Filament plugin wiring the page + widget.
+- `src/Filament/Pages/` and `src/Filament/Widgets/` — the page and status widget.
+- `config/$CONFIG_KEY$.php` — navigation group and permission settings.
+- `resources/views/` — the `$VIEW_NAMESPACE$::*` views.
+
+## Usage
+
+Register the plugin in your Filament panel provider:
+
+```php
+use $PHP_NAMESPACE$\LicenseVerifierPlugin;
+
+$panel->plugin(LicenseVerifierPlugin::make());
+```
+
+## Customising
+
+Edit the views and config directly — nothing here is overwritten by composer
+updates. To change behaviour shared with other apps, contribute upstream to
+`$BASE_PACKAGE$`.

@@ -9,16 +9,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Single package bundling the Blade, Filament, Livewire and Vue UI presets for
-  `laranail/license-verifier`, each as a self-contained module under `src/<Preset>/`.
-- Auto-activation: a preset boots when its framework is present (Blade and Vue are
-  always available); override per preset via `config/license-verifier-ui.php` or the
-  `LICENSE_VERIFIER_PRESET_*` env vars.
-- `laranail::license-verifier-ui.install` command to interactively publish chosen presets.
+- **Core UI engine + preset generator.** `laranail/license-verifier-ui` is now the core that
+  published presets extend and use. It ships a stub-based generator that scaffolds an owned,
+  thin preset package into the host app under a user-chosen namespace, path and theme, then
+  registers it via composer.
+- **Per-preset packages** under `presets/*`, each extending the core:
+  `laranail/license-verifier-ui-{blade,livewire,filament,vue}`. Installing one pulls only the
+  core + that preset.
+- **Multi-CSS-UI themes**: tailwind, bootstrap, alpine, unstyled and custom for the HTML presets
+  (Filament uses its own design system).
+- **Commands** `laranail::license-verifier-ui.{install,uninstall,list}`. Install prompts for
+  theme + composer `vendor/package` + namespace + path and a register mode; the namespace can be
+  derived from the `vendor/package` (e.g. `acme/license-verifier-blade` → `Acme\LicenseVerifierBlade`)
+  or entered explicitly, and namespace/path are validated harshly; uses `ManagesComposer` for
+  path-repo registration / removal.
+- Generated (and shipped) service providers live under a `Providers/` sub-namespace
+  (`<Namespace>\Providers\<Preset>PresetServiceProvider`), wired in each `composer.json`'s
+  `extra.laravel.providers`.
 
 ### Changed
 
-- Supersedes the four separate packages `laranail/license-verifier-{blade,filament,livewire,vue}-preset`.
-  Config keys, view namespaces and per-preset publish tags are unchanged, so apps that
-  published from the old packages keep working. The npm package
-  `@laranail/license-verifier-vue-preset` is now `@laranail/license-verifier-ui`.
+- Replaces the previous single merged package (and the four original
+  `laranail/license-verifier-*-preset` packages). Publishing is now generation: a real, owned,
+  composer-registered package per preset, rather than scattered `vendor:publish` output.

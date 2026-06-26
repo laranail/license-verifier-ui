@@ -1,0 +1,33 @@
+# $COMPOSER_NAME$
+
+A generated **license-verifier UI** package — $PRESET_LABEL$ (`$THEME` theme).
+It extends [`$BASE_PACKAGE$`](https://opensource.simtabi.com/license-verifier-ui-vue/),
+which carries the logic and ships updates; this package is **yours to own and edit**.
+
+## What you own
+
+- `src/Providers/` — the package service provider (`$PROVIDER_FQCN`), auto-discovered by Laravel.
+- `src/Http/Controllers/` — a thin controller exposing the JSON endpoints.
+- `routes/web.php` — the JSON routes, loaded inside a configurable group.
+- `config/$CONFIG_KEY$.php` — routes and permission settings.
+- `resources/js/` — the Vue 3 SFC and Vite entry.
+- `resources/views/mount.blade.php` — mounts the app with endpoint URLs + CSRF.
+
+## Building the assets
+
+```bash
+npm install
+npm run build
+```
+
+Then include the mount view where you want the form:
+
+```blade
+@include('$VIEW_NAMESPACE$::mount')
+```
+
+## Customising
+
+Edit the SFC, views, and config directly — nothing here is overwritten by
+composer updates. To change behaviour shared with other apps, contribute
+upstream to `$BASE_PACKAGE$`.

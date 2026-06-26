@@ -1,0 +1,6 @@
+<div>
+    <span class="lv-status-widget" data-lv-valid="{{ $valid ? 'true' : 'false' }}">
+        <span class="lv-status-widget__dot" aria-hidden="true"></span>
+        <span class="lv-status-widget__label">{{ $status }}</span>
+    </span>
+</div>

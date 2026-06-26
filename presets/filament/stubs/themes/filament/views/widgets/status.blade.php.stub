@@ -1,0 +1,12 @@
+<x-filament-widgets::widget>
+    <x-filament::section>
+        <div class="flex items-center gap-2">
+            <span @class([
+                'h-2.5 w-2.5 rounded-full',
+                'bg-success-500' => $valid,
+                'bg-danger-500' => ! $valid,
+            ])></span>
+            <span class="text-sm font-medium">{{ $label }}</span>
+        </div>
+    </x-filament::section>
+</x-filament-widgets::widget>

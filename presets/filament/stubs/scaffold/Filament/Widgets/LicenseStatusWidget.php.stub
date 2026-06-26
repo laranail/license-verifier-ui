@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+namespace $PHP_NAMESPACE$\Filament\Widgets;
+
+use $BASE_NAMESPACE$\Filament\Filament\Widgets\BaseLicenseStatusWidget;
+
+class LicenseStatusWidget extends BaseLicenseStatusWidget
+{
+    protected string $view = '$VIEW_NAMESPACE$::widgets.status';
+}

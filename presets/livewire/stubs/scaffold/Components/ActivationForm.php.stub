@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace $PHP_NAMESPACE$\Components;
+
+use $BASE_NAMESPACE$\Livewire\Livewire\BaseActivationForm;
+
+final class ActivationForm extends BaseActivationForm
+{
+    protected function viewNamespace(): string
+    {
+        return '$VIEW_NAMESPACE$';
+    }
+}

@@ -1,7 +1,7 @@
 {
     "name": "laranail/license-verifier-ui",
-    "description": "Blade, Filament, Livewire and Vue UI presets for laranail/license-verifier in one package — pick what you need per project. Driver-aware and fully overridable.",
-    "keywords": ["laravel", "license", "ui", "preset", "blade", "filament", "livewire", "vue", "laranail"],
+    "description": "Core UI engine for laranail/license-verifier: a generator that scaffolds owned, themeable preset packages (Blade, Livewire, Filament, Vue) which extend this core.",
+    "keywords": ["laravel", "license", "ui", "preset", "generator", "laranail"],
     "homepage": "https://opensource.simtabi.com/license-verifier-ui/",
     "license": "MIT",
     "authors": [
@@ -18,24 +18,36 @@
         "illuminate/support": "^13.0",
         "illuminate/console": "^13.0",
         "illuminate/http": "^13.0",
+        "illuminate/filesystem": "^13.0",
         "laranail/package-tools": "^1.0",
         "laranail/license-verifier": "@dev"
     },
     "require-dev": {
         "filament/filament": "^4.0 || ^3.2",
+        "laranail/license-verifier-ui-blade": "@dev",
+        "laranail/license-verifier-ui-filament": "@dev",
+        "laranail/license-verifier-ui-livewire": "@dev",
+        "laranail/license-verifier-ui-vue": "@dev",
         "larastan/larastan": "^3.0",
         "laravel/pint": "^1.18",
         "livewire/livewire": "^3.5",
         "orchestra/testbench": "^10.6 || ^11.0",
         "pestphp/pest": "^4.0",
-        "pestphp/pest-plugin-laravel": "^4.0"
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "rector/rector": "^2.0"
     },
     "suggest": {
-        "filament/filament": "Required for the Filament preset (^4.0 || ^3.2).",
-        "livewire/livewire": "Required for the Livewire preset (^3.5).",
-        "vue": "Required (via npm) for the Vue preset (^3.4)."
+        "filament/filament": "Required only by the Filament preset package.",
+        "livewire/livewire": "Required only by the Livewire preset package."
     },
     "repositories": [
+        { "type": "path", "url": "presets/blade" },
+        { "type": "path", "url": "presets/livewire" },
+        { "type": "path", "url": "presets/filament" },
+        { "type": "path", "url": "presets/vue" },
         { "type": "path", "url": "../verifier" },
         { "type": "path", "url": "../../package/tools" }
     ],
@@ -47,9 +59,15 @@
     },
     "scripts": {
         "post-autoload-dump": "@php vendor/bin/testbench package:discover --ansi",
+        "preview": "@php scripts/generate-preview.php",
         "test": "vendor/bin/pest --colors=always",
+        "test-coverage": "vendor/bin/pest --coverage",
         "analyse": "vendor/bin/phpstan analyse",
-        "format": "vendor/bin/pint"
+        "lint": ["@pint", "@analyse", "@rector"],
+        "pint": "vendor/bin/pint --test",
+        "format": "vendor/bin/pint",
+        "rector": "vendor/bin/rector process --dry-run",
+        "rector-fix": "vendor/bin/rector process"
     },
     "config": {
         "sort-packages": true,
@@ -57,7 +75,7 @@
     },
     "extra": {
         "laravel": {
-            "providers": ["Simtabi\\Laranail\\Licence\\Verifier\\Presets\\LicenseVerifierUiServiceProvider"]
+            "providers": ["Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Providers\\LicenseVerifierUiServiceProvider"]
         }
     },
     "minimum-stability": "dev",

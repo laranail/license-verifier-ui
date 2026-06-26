@@ -1,0 +1,20 @@
+<div>
+    {{-- Activation form (CUSTOM theme). Bare skeleton — bring your own classes. --}}
+    <form wire:submit="activate" class="lv-license-form">
+        @foreach ($fields as $field)
+            @php($name = $field['name'] ?? 'license_key')
+            @php($type = $field['type'] ?? 'text')
+            @php($label = $field['label'] ?? \Illuminate\Support\Str::headline($name))
+            <div class="lv-field" data-lv-field="{{ $name }}">
+                @if ($type === 'checkbox')
+                    <label><input type="checkbox" wire:model="agreement"> {{ $label }}</label>
+                @else
+                    <label>{{ $label }}</label>
+                    <input type="{{ $type }}" wire:model="{{ $name === 'license_key' ? 'licenseKey' : 'client' }}">
+                @endif
+            </div>
+        @endforeach
+        <button type="submit">{{ __('license-verifier::license-verifier.activate') }}</button>
+        @if ($message)<p data-lv-message>{{ $message }}</p>@endif
+    </form>
+</div>

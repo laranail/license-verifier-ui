@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace $PHP_NAMESPACE$\Providers;
+
+use $BASE_NAMESPACE$\Livewire\Providers\BaseLivewirePresetServiceProvider;
+use $PHP_NAMESPACE$\Components\ActivationForm;
+use $PHP_NAMESPACE$\Components\StatusWidget;
+
+final class $PROVIDER_CLASS$ extends BaseLivewirePresetServiceProvider
+{
+    protected function viewNamespace(): string
+    {
+        return '$VIEW_NAMESPACE$';
+    }
+
+    protected function configKey(): string
+    {
+        return '$CONFIG_KEY$';
+    }
+
+    protected function components(): array
+    {
+        return [
+            (string) config('$CONFIG_KEY$.components.activation_form', 'lv-activation-form') => ActivationForm::class,
+            (string) config('$CONFIG_KEY$.components.status_widget', 'lv-status-widget') => StatusWidget::class,
+        ];
+    }
+}

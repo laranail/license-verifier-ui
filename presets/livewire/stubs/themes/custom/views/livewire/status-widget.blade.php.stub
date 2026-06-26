@@ -1,0 +1,4 @@
+<div>
+    {{-- Status (CUSTOM theme). Render your own indicator. --}}
+    <span data-lv-status-widget data-lv-valid="{{ $valid ? 'true' : 'false' }}">{{ $status }}</span>
+</div>

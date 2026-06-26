@@ -1,44 +1,37 @@
 # Configuration
 
-## Activation gating
+## Core (generator defaults)
 
-The umbrella config `config/license-verifier-ui.php` controls which presets the
-package boots:
-
-```bash
-php artisan vendor:publish --tag=license-verifier-ui-config
-```
+`config/license-verifier-ui.php` seeds the install prompts only:
 
 ```php
-'presets' => [
-    'blade'    => ['enabled' => null,  'publishable' => true],
-    'filament' => ['enabled' => null,  'publishable' => true],
-    'livewire' => ['enabled' => null,  'publishable' => true],
-    'vue'      => ['enabled' => null,  'publishable' => true],
-],
+'default_theme'     => 'tailwind',
+'composer_vendor'   => null,        // seeds the vendor in the vendor/package prompt; null → your app's composer vendor
+'symlink'           => true,
+'composer_timeout'  => 300,
 ```
 
-For each preset, `enabled`:
+The PHP namespace is **not** configured here — at install time it is either derived from the
+chosen `vendor/package` (e.g. `acme/license-verifier-blade` → `Acme\LicenseVerifierBlade`) or
+entered explicitly.
 
-- `null` — **auto**: active only when the preset's framework is installed
-  (Blade and Vue are framework-free, so they are always active).
-- `false` — hard-disabled, even when the framework is present.
-- truthy — force-enabled (still requires the framework to be installed).
+## Generated package config
 
-`publishable` controls whether the preset is offered by
-`php artisan laranail::license-verifier-ui.install`.
+Each generated package ships its own `config/license-verifier-<preset>.php`, merged at the flat
+key `license-verifier-<preset>` by its provider:
 
-Each toggle also reads an env var: `LICENSE_VERIFIER_PRESET_{BLADE,FILAMENT,
-LIVEWIRE,VUE}`.
+- **Blade / Vue** — `routes.{enabled,prefix,name,middleware}`, `permission`
+  (a Gate ability, or null), and (Blade) `redirect_after_activation`.
+- **Livewire** — `components.{activation_form,status_widget}` (the `<livewire:…>` aliases),
+  `permission`.
+- **Filament** — `navigation_group`.
 
-## Publish tags
+## Harsh install-time validation
 
-| Preset | Config | Views | Assets |
-|--------|--------|-------|--------|
-| Blade | `laranail::license-verifier-blade-preset-config` | `laranail::license-verifier-blade-preset-views` | `license-verifier-blade-assets` |
-| Filament | `laranail::license-verifier-filament-preset-config` | `laranail::license-verifier-filament-preset-views` | — |
-| Livewire | `laranail::license-verifier-livewire-preset-config` | `laranail::license-verifier-livewire-preset-views` | — |
-| Vue | `laranail::license-verifier-vue-preset-config` | `laranail::license-verifier-vue-preset-views` | `license-verifier-vue-assets` |
-| Umbrella | `license-verifier-ui-config` | — | — |
+- **Namespace** must be PSR-4 StudlyCase with **≥2 segments** (so it can't shadow your app root)
+  and contain no PHP reserved words.
+- **Path** must be relative, resolve **inside `base_path()`**, have a writable parent, and not be
+  a protected directory (`vendor/`, `node_modules/`, `storage/framework`, `.git`). A non-empty
+  existing target is refused unless `--force`.
 
 [← Docs index](../README.md#documentation)

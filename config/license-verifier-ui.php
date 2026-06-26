@@ -6,44 +6,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Preset activation
+    | Generator defaults
     |--------------------------------------------------------------------------
     |
-    | Each UI preset auto-activates when its underlying framework is installed
-    | (Blade and Vue are framework-free, so they are always available). Use the
-    | `enabled` flag to override that per preset:
-    |
-    |   null  => auto: active only when the framework is present (default)
-    |   false => hard-disabled, even if the framework is installed
-    |   true  => force-enabled (still requires the framework to be present)
-    |
-    | `publishable` controls whether the preset is offered by the
-    | `laranail::license-verifier-ui.install` command.
+    | Defaults the `laranail::license-verifier-ui.install` command falls back to.
+    | The user is always prompted; these only seed the prompts.
     |
     */
 
-    'presets' => [
+    'default_theme' => env('LICENSE_VERIFIER_UI_THEME', 'tailwind'),
 
-        'blade' => [
-            'enabled' => env('LICENSE_VERIFIER_PRESET_BLADE'),
-            'publishable' => true,
-        ],
+    // Seeds the vendor half of the "vendor/package" prompt. The PHP namespace is
+    // derived from the chosen vendor/package (or entered explicitly) at install time.
+    'composer_vendor' => env('LICENSE_VERIFIER_UI_VENDOR'),
 
-        'filament' => [
-            'enabled' => env('LICENSE_VERIFIER_PRESET_FILAMENT'),
-            'publishable' => true,
-        ],
+    'symlink' => env('LICENSE_VERIFIER_UI_SYMLINK', true),
 
-        'livewire' => [
-            'enabled' => env('LICENSE_VERIFIER_PRESET_LIVEWIRE'),
-            'publishable' => true,
-        ],
-
-        'vue' => [
-            'enabled' => env('LICENSE_VERIFIER_PRESET_VUE'),
-            'publishable' => true,
-        ],
-
-    ],
+    'composer_timeout' => env('LICENSE_VERIFIER_UI_COMPOSER_TIMEOUT', 300),
 
 ];

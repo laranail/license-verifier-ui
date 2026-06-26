@@ -1,0 +1,7 @@
+{{-- Mount point for the generated Vue LicenseForm. Build resources/js/entry.js with Vite. --}}
+<div id="lv-license-app"
+     class="mx-auto max-w-md"
+     data-status-url="{{ route('$ROUTE_NAME_PREFIX$status') }}"
+     data-activate-url="{{ route('$ROUTE_NAME_PREFIX$activate') }}"
+     data-deactivate-url="{{ route('$ROUTE_NAME_PREFIX$deactivate') }}"
+     data-csrf="{{ csrf_token() }}"></div>
