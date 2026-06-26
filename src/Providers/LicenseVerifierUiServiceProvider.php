@@ -7,6 +7,7 @@ namespace Simtabi\Laranail\Licence\Verifier\Presets\Providers;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Override;
+use Simtabi\Laranail\Licence\Verifier\Presets\Console\DoctorCommand;
 use Simtabi\Laranail\Licence\Verifier\Presets\Console\InstallPresetCommand;
 use Simtabi\Laranail\Licence\Verifier\Presets\Console\ListPresetsCommand;
 use Simtabi\Laranail\Licence\Verifier\Presets\Console\UninstallPresetCommand;
@@ -14,6 +15,7 @@ use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
 use Simtabi\Laranail\Licence\Verifier\Presets\Generators\StubRenderer;
 use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 use Simtabi\Laranail\Licence\Verifier\Presets\Rendering\FieldRenderer;
+use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorService;
 
 /**
  * Core service provider. Registers the generator/registry and the install,
@@ -51,7 +53,16 @@ final class LicenseVerifierUiServiceProvider extends ServiceProvider
             InstallPresetCommand::class,
             UninstallPresetCommand::class,
             ListPresetsCommand::class,
+            DoctorCommand::class,
         ]);
+
+        if ($this->app->bound(DoctorService::class)) {
+            $service = $this->app->make(DoctorService::class);
+
+            foreach (DoctorCommand::CHECKS as $check) {
+                $service->register($check);
+            }
+        }
     }
 
     /** Absolute path to the package's config file (provider lives in src/Providers). */
