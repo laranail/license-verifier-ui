@@ -26,3 +26,16 @@ jobs:
           coverage: none
       - run: composer update --prefer-stable --no-interaction --no-progress
       - run: vendor/bin/pest --colors=always
+
+  vue-js:
+    runs-on: ubuntu-latest
+    name: Vue (JS)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+        working-directory: presets/vue
+      - run: npm test
+        working-directory: presets/vue

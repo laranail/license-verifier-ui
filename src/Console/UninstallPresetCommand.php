@@ -9,6 +9,7 @@ use Illuminate\Filesystem\Filesystem;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\select;
 
+use Simtabi\Laranail\Licence\Verifier\Presets\Events\PresetUninstalled;
 use Simtabi\Laranail\Package\Tools\Commands\Command;
 use Simtabi\Laranail\Package\Tools\Concerns\Package\ManagesComposer;
 
@@ -57,12 +58,17 @@ final class UninstallPresetCommand extends Command
         $delete = (bool) $this->option('delete-files')
             || confirm("Also delete the directory {$url}?", default: false);
 
+        $deleted = false;
+
         if ($delete && is_string($url) && $files->isDirectory(base_path($url))) {
             $files->deleteDirectory(base_path($url));
             $this->components->info("Deleted {$url}.");
+            $deleted = true;
         }
 
         $this->components->info("Uninstalled {$name}.");
+
+        event(new PresetUninstalled((string) $name, $deleted));
 
         return self::SUCCESS;
     }

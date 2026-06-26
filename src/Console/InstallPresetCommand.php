@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
 
+use Simtabi\Laranail\Licence\Verifier\Presets\Events\PresetInstallationFailed;
+use Simtabi\Laranail\Licence\Verifier\Presets\Events\PresetInstalled;
 use Simtabi\Laranail\Licence\Verifier\Presets\Generators\GeneratedPackage;
 use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
 use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetDefinition;
@@ -54,13 +56,23 @@ final class InstallPresetCommand extends Command
         }
 
         $def = $registry->get($key);
+        if (! $def instanceof PresetDefinition) {
+            $this->components->error("The \"{$key}\" preset is not registered.");
+
+            return self::FAILURE;
+        }
+
+        $configuredTheme = config('license-verifier-ui.default_theme');
+        $defaultTheme = is_string($configuredTheme) && $def->supportsTheme($configuredTheme)
+            ? $configuredTheme
+            : $def->defaultTheme;
 
         $theme = $def->supportsTheme(Theme::FILAMENT) && count($def->supportedThemes) === 1
             ? Theme::FILAMENT
             : select(
                 label: 'Which UI theme?',
                 options: collect($def->supportedThemes)->mapWithKeys(fn (string $t): array => [$t => Theme::label($t)])->all(),
-                default: $def->defaultTheme,
+                default: $defaultTheme,
             );
 
         $composerName = text(
@@ -105,6 +117,7 @@ final class InstallPresetCommand extends Command
             $written = $generator->generate($pkg, $def, base_path(), (bool) $this->option('force'));
         } catch (Throwable $e) {
             $this->components->error($e->getMessage());
+            event(new PresetInstallationFailed($key, $e->getMessage()));
 
             return self::FAILURE;
         }
@@ -113,6 +126,8 @@ final class InstallPresetCommand extends Command
 
         if ($register === 'register') {
             if (! $this->registerWithComposer($pkg)) {
+                event(new PresetInstallationFailed($key, 'composer registration failed'));
+
                 return self::FAILURE;
             }
         } else {
@@ -120,6 +135,8 @@ final class InstallPresetCommand extends Command
         }
 
         $this->printPostNotes($key, $namespace);
+
+        event(new PresetInstalled($key, $namespace, $path));
 
         return self::SUCCESS;
     }
@@ -217,8 +234,9 @@ final class InstallPresetCommand extends Command
 
         $this->components->info('Registering the package via composer…');
         $this->withComposerErrors();
+        $this->withComposerTimeout((int) config('license-verifier-ui.composer_timeout', 300));
 
-        if (! $this->addComposerRepository($pkg->vendor, $pkg->package, $pkg->path, ! $this->option('no-symlink'))) {
+        if (! $this->addComposerRepository($pkg->vendor, $pkg->package, $pkg->path, $this->shouldSymlink())) {
             $this->components->error('Failed to add the path repository.');
 
             return false;
@@ -240,11 +258,21 @@ final class InstallPresetCommand extends Command
 
     private function printManualComposer(GeneratedPackage $pkg): void
     {
-        $repo = json_encode(['type' => 'path', 'url' => $pkg->path, 'options' => ['symlink' => true]]);
+        $repo = json_encode(['type' => 'path', 'url' => $pkg->path, 'options' => ['symlink' => $this->shouldSymlink()]]);
         $this->components->bulletList([
             "composer config repositories.{$pkg->vendorKebab()}/{$pkg->packageKebab()} '{$repo}'",
             'composer require '.$pkg->composerName().':@dev',
         ]);
+    }
+
+    /** Symlink the path repository unless `--no-symlink` or config disables it. */
+    private function shouldSymlink(): bool
+    {
+        if ($this->option('no-symlink')) {
+            return false;
+        }
+
+        return (bool) config('license-verifier-ui.symlink', true);
     }
 
     private function printPostNotes(string $key, string $namespace): void

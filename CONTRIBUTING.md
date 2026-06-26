@@ -34,6 +34,18 @@ scaffold, and the per-theme views/js. There is no shared root `stubs/` folder.
   `supportedThemes`. The generation test loops every supported theme, so it's covered automatically.
 - Run `composer preview` and eyeball `generated-preview/<preset>/<theme>/`, then `composer test`.
 
+## Tests
+
+- **PHP** — `composer test` (Pest). The `Feature` suite boots a generated package per preset and
+  exercises it against the verifier null driver (Blade/Vue routes, the Livewire activation form);
+  the `Generation` suite checks every preset × theme renders with valid composer + no leftover
+  tokens. The `Filament` suite compiles the generated Filament views with Filament's Blade
+  components registered (full interactive Filament page rendering needs Filament's own panel
+  harness, so it is not covered here).
+- **JS (Vue preset)** — `cd presets/vue && npm install && npm test` (Vitest + `@vue/test-utils`,
+  jsdom). The Vue SFC stub is token-free, so `@vitejs/plugin-vue` compiles `*.vue.stub` directly;
+  the test mounts every theme's SFC and drives status/activate/deactivate with a mocked `fetch`.
+
 ## Keep the boundary
 
 The core owns all logic (base controllers/components/providers, the generator, validators). A

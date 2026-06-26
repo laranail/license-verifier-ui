@@ -9,8 +9,9 @@ return [
     | Generator defaults
     |--------------------------------------------------------------------------
     |
-    | Defaults the `laranail::license-verifier-ui.install` command falls back to.
-    | The user is always prompted; these only seed the prompts.
+    | Defaults the `laranail::license-verifier-ui.install` command falls back to:
+    | `default_theme` and `composer_vendor` seed the prompts, while `symlink` and
+    | `composer_timeout` control how the generated package is registered via composer.
     |
     */
 

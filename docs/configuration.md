@@ -2,7 +2,8 @@
 
 ## Core (generator defaults)
 
-`config/license-verifier-ui.php` seeds the install prompts only:
+`config/license-verifier-ui.php` configures the install command — `default_theme` and
+`composer_vendor` seed the prompts; `symlink` and `composer_timeout` control composer registration:
 
 ```php
 'default_theme'     => 'tailwind',
