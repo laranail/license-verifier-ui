@@ -1,6 +1,6 @@
 # laranail/license-verifier-ui
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 > Blade, Filament, Livewire and Vue UI presets for
 > [`laranail/license-verifier`](https://opensource.simtabi.com/license-verifier/),
