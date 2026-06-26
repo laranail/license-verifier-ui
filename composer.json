@@ -1,0 +1,65 @@
+{
+    "name": "laranail/license-verifier-ui",
+    "description": "Blade, Filament, Livewire and Vue UI presets for laranail/license-verifier in one package — pick what you need per project. Driver-aware and fully overridable.",
+    "keywords": ["laravel", "license", "ui", "preset", "blade", "filament", "livewire", "vue", "laranail"],
+    "homepage": "https://opensource.simtabi.com/license-verifier-ui/",
+    "license": "MIT",
+    "authors": [
+        { "name": "Simtabi LLC", "email": "opensource@simtabi.com", "homepage": "https://opensource.simtabi.com", "role": "Organization" },
+        { "name": "Imani Manyara", "email": "imani@simtabi.com", "role": "Maintainer" }
+    ],
+    "support": {
+        "issues": "https://github.com/laranail/license-verifier-ui/issues",
+        "source": "https://github.com/laranail/license-verifier-ui",
+        "docs": "https://opensource.simtabi.com/license-verifier-ui/docs/"
+    },
+    "require": {
+        "php": "^8.4 || ^8.5",
+        "illuminate/support": "^13.0",
+        "illuminate/console": "^13.0",
+        "illuminate/http": "^13.0",
+        "laranail/package-tools": "^1.0",
+        "laranail/license-verifier": "@dev"
+    },
+    "require-dev": {
+        "filament/filament": "^4.0 || ^3.2",
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.18",
+        "livewire/livewire": "^3.5",
+        "orchestra/testbench": "^10.6 || ^11.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0"
+    },
+    "suggest": {
+        "filament/filament": "Required for the Filament preset (^4.0 || ^3.2).",
+        "livewire/livewire": "Required for the Livewire preset (^3.5).",
+        "vue": "Required (via npm) for the Vue preset (^3.4)."
+    },
+    "repositories": [
+        { "type": "path", "url": "../verifier" },
+        { "type": "path", "url": "../../package/tools" }
+    ],
+    "autoload": {
+        "psr-4": { "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Tests\\": "tests/" }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php vendor/bin/testbench package:discover --ansi",
+        "test": "vendor/bin/pest --colors=always",
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": { "pestphp/pest-plugin": true, "phpstan/extension-installer": true }
+    },
+    "extra": {
+        "laravel": {
+            "providers": ["Simtabi\\Laranail\\Licence\\Verifier\\Presets\\LicenseVerifierUiServiceProvider"]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
