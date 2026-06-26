@@ -136,6 +136,12 @@ it('generates every installed preset × theme with valid composer + no leftover 
                 expect(array_keys($composer['require']))->toContain($fw);
             }
 
+            // A generated package.json (Vue) must also be valid JSON.
+            if (is_file($root.'/package.json')) {
+                expect(json_decode((string) file_get_contents($root.'/package.json'), true))
+                    ->not->toBeNull("{$label} package.json invalid");
+            }
+
             // No leftover tokens anywhere.
             foreach ($written as $file) {
                 expect(preg_match('/\$[A-Z][A-Z0-9_]*\$/', (string) file_get_contents($file)))

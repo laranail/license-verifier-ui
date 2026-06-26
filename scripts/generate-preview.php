@@ -69,8 +69,8 @@ foreach ($defs as $key => $def) {
                     $problems[] = "php syntax: {$file}";
                 }
             }
-            if (basename($file) === 'composer.json' && json_decode((string) $files->get($file)) === null) {
-                $problems[] = "invalid composer.json: {$file}";
+            if (in_array(basename($file), ['composer.json', 'package.json'], true) && json_decode((string) $files->get($file)) === null) {
+                $problems[] = "invalid JSON: {$file}";
             }
         }
 

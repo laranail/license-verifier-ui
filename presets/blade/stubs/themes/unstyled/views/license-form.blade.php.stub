@@ -1,5 +1,5 @@
 {{-- Driver-aware activation form (unstyled: semantic HTML + .lv-* hooks). --}}
-<form class="lv-license-form" method="POST" action="{{ route('$ROUTE_NAME_PREFIX$activate') }}" data-lv-form>
+<form class="lv-license-form" method="POST" action="{{ route('$ROUTE_NAME_PREFIX$activate') }}" data-lv-form @if (config('$CONFIG_KEY$.redirect_after_activation')) data-lv-redirect="{{ config('$CONFIG_KEY$.redirect_after_activation') }}" @endif>
     @csrf
     @foreach ($fields as $field)
         @php($name = $field['name'] ?? 'license_key')

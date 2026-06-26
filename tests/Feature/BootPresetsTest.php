@@ -50,6 +50,21 @@ it('renders every Blade theme unlicensed page', function (string $theme): void {
         ->assertSee('name="license_key"', false);
 })->with(['tailwind', 'bootstrap', 'alpine', 'unstyled', 'custom']);
 
+it('surfaces the configured redirect_after_activation on the Blade form', function (): void {
+    $ns = 'Acme\\BootBladeRedirect';
+    $root = generatePresetPackage('blade', 'tailwind', $ns);
+
+    require $root.'/src/Http/Controllers/LicenseController.php';
+    require $root.'/src/Providers/BladePresetServiceProvider.php';
+    $this->app->register($ns.'\\Providers\\BladePresetServiceProvider');
+
+    config()->set('license-verifier-blade.redirect_after_activation', '/dashboard');
+
+    $this->get('license/unlicensed')
+        ->assertOk()
+        ->assertSee('data-lv-redirect="/dashboard"', false);
+});
+
 it('boots a generated Vue package and serves the JSON endpoints', function (): void {
     $ns = 'Acme\\BootVue';
     $root = generatePresetPackage('vue', 'unstyled', $ns);

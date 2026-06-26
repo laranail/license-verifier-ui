@@ -25,6 +25,11 @@ document.addEventListener('alpine:init', () => {
                 try { payload = await res.json(); } catch (e) { /* noop */ }
                 this.ok = res.ok;
                 this.message = payload.message || (res.ok ? 'OK' : 'Error');
+
+                if (res.ok) {
+                    const redirect = this.$el.getAttribute('data-lv-redirect');
+                    if (redirect) window.location.assign(redirect);
+                }
             } finally {
                 this.loading = false;
             }

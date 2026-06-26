@@ -26,6 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Generated (and shipped) service providers live under a `Providers/` sub-namespace
   (`<Namespace>\Providers\<Preset>PresetServiceProvider`), wired in each `composer.json`'s
   `extra.laravel.providers`.
+- Every generated config key is honored end to end — the Blade `redirect_after_activation` is
+  surfaced on the activation form (and acted on by the script, incl. the Alpine component), and the
+  Filament `navigation_group` drives the generated page's navigation group.
 
 ### Changed
 

@@ -1,6 +1,7 @@
 {{-- Driver-aware activation form (Tailwind + Alpine.js). --}}
 <form class="lv-license-form space-y-4" x-data="lvLicenseForm()" x-on:submit.prevent="activate"
-      method="POST" action="{{ route('$ROUTE_NAME_PREFIX$activate') }}" data-lv-form>
+      method="POST" action="{{ route('$ROUTE_NAME_PREFIX$activate') }}" data-lv-form
+      @if (config('$CONFIG_KEY$.redirect_after_activation')) data-lv-redirect="{{ config('$CONFIG_KEY$.redirect_after_activation') }}" @endif>
     @csrf
     @foreach ($fields as $field)
         @php($name = $field['name'] ?? 'license_key')

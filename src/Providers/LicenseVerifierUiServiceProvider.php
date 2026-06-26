@@ -56,6 +56,9 @@ final class LicenseVerifierUiServiceProvider extends ServiceProvider
             DoctorCommand::class,
         ]);
 
+        // Self-registered (not via Package::hasDoctorCheck): this is a plain
+        // Illuminate ServiceProvider, so it has no Package object for the
+        // package-tools boot hook to read.
         if ($this->app->bound(DoctorService::class)) {
             $service = $this->app->make(DoctorService::class);
 
