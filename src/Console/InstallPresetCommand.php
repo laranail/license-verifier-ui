@@ -18,7 +18,6 @@ use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 use Simtabi\Laranail\Licence\Verifier\Presets\Themes\Theme;
 use Simtabi\Laranail\Licence\Verifier\Presets\Validation\NamespaceValidator;
 use Simtabi\Laranail\Licence\Verifier\Presets\Validation\PathValidator;
-use Simtabi\Laranail\Package\Tools\Commands\Command;
 use Simtabi\Laranail\Package\Tools\Concerns\Package\ManagesComposer;
 use Throwable;
 

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Console;
 
 use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
-use Simtabi\Laranail\Package\Tools\Commands\Command;
 
 /**
  * List the installed preset base packages (those whose definition is registered)

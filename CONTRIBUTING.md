@@ -45,10 +45,11 @@ scaffold, and the per-theme views/js. There is no shared root `stubs/` folder.
 - **JS (Vue preset)** — `cd presets/vue && npm install && npm test` (Vitest + `@vue/test-utils`,
   jsdom). The Vue SFC stub is token-free, so `@vitejs/plugin-vue` compiles `*.vue.stub` directly;
   the test mounts every theme's SFC and drives status/activate/deactivate with a mocked `fetch`.
-- **JS (Blade preset)** — `cd presets/blade && npm install && npm test` (Vitest + jsdom). Each test
-  evals the shipped `license-verifier.js` stub into an isolated JSDOM window: the IIFE themes are
-  checked for the `[data-lv-form]` submit→fetch contract, and the Alpine theme for registering its
-  component on `alpine:init`.
+- **JS (Blade preset)** — `cd presets/blade && npm install && npm test` (Vitest + happy-dom). Each
+  test evals the shipped `license-verifier.js` stub into an isolated happy-dom window: the IIFE
+  themes are checked for the `[data-lv-form]` submit→fetch contract and `data-lv-redirect`
+  navigation (happy-dom, unlike jsdom, lets `location.assign` update `location.href`), and the
+  Alpine theme for registering + activating its component.
 
 ## Keep the boundary
 

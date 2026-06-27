@@ -26,6 +26,11 @@
         let payload = {};
         try { payload = await res.json(); } catch (e) { /* noop */ }
         setMessage(form, payload.message || (res.ok ? 'OK' : 'Error'), res.ok);
+
+        if (res.ok) {
+            const redirect = form.getAttribute('data-lv-redirect');
+            if (redirect) window.location.assign(redirect);
+        }
     }
 
     document.addEventListener('submit', function (event) {

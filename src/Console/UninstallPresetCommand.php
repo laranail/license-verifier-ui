@@ -10,7 +10,6 @@ use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\select;
 
 use Simtabi\Laranail\Licence\Verifier\Presets\Events\PresetUninstalled;
-use Simtabi\Laranail\Package\Tools\Commands\Command;
 use Simtabi\Laranail\Package\Tools\Concerns\Package\ManagesComposer;
 
 /**

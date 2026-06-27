@@ -49,7 +49,8 @@
         { "type": "path", "url": "presets/filament" },
         { "type": "path", "url": "presets/vue" },
         { "type": "path", "url": "../verifier" },
-        { "type": "path", "url": "../../package/tools" }
+        { "type": "path", "url": "../../package/tools" },
+        { "type": "path", "url": "../../tools/console" }
     ],
     "autoload": {
         "psr-4": { "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\": "src/" }
