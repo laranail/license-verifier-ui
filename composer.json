@@ -2,7 +2,7 @@
     "name": "laranail/license-verifier-ui",
     "description": "Core UI engine for laranail/license-verifier: a generator that scaffolds owned, themeable preset packages (Blade, Livewire, Filament, Vue) which extend this core.",
     "keywords": ["laravel", "license", "ui", "preset", "generator", "laranail"],
-    "homepage": "https://opensource.simtabi.com/license-verifier-ui/",
+    "homepage": "https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/",
     "license": "MIT",
     "authors": [
         { "name": "Simtabi LLC", "email": "opensource@simtabi.com", "homepage": "https://opensource.simtabi.com", "role": "Organization" },
@@ -11,7 +11,7 @@
     "support": {
         "issues": "https://github.com/laranail/license-verifier-ui/issues",
         "source": "https://github.com/laranail/license-verifier-ui",
-        "docs": "https://opensource.simtabi.com/license-verifier-ui/docs/"
+        "docs": "https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/"
     },
     "require": {
         "php": "^8.4 || ^8.5",
