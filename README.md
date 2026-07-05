@@ -1,5 +1,8 @@
 # laranail/license-verifier-ui
 
+[![Latest version on Packagist](https://img.shields.io/packagist/v/laranail/license-verifier-ui.svg)](https://packagist.org/packages/laranail/license-verifier-ui)
+[![Tests](https://github.com/laranail/license-verifier-ui/actions/workflows/tests.yml/badge.svg)](https://github.com/laranail/license-verifier-ui/actions/workflows/tests.yml)
+[![Static analysis](https://github.com/laranail/license-verifier-ui/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/laranail/license-verifier-ui/actions/workflows/static-analysis.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 > The core UI engine for [`laranail/license-verifier`](https://opensource.simtabi.com/license-verifier/):
@@ -85,23 +88,55 @@ Flags on `install`: `--force` (overwrite target), `--no-symlink` (copy instead o
 └── resources/views|js/  # your chosen theme — ready to use, yours to edit
 ```
 
-## Documentation
+## <a name="documentation"></a>Documentation
 
-| Page | What |
-|------|------|
-| [Installation](docs/installation.md) | Requiring a preset + running the generator |
-| [Architecture](docs/architecture.md) | Core engine, generator, registry, base classes |
-| [Themes](docs/themes.md) | The theme matrix and how to add one |
-| [Configuration](docs/configuration.md) | Generated config keys + validation |
-| [Blade](docs/presets/blade.md) · [Livewire](docs/presets/livewire.md) · [Filament](docs/presets/filament.md) · [Vue](docs/presets/vue.md) | Per-preset notes |
+Hosted at [`opensource.simtabi.com/license-verifier-ui/docs/`](https://opensource.simtabi.com/license-verifier-ui/docs/).
+The same pages live under [`docs/`](docs/):
 
-## Development
+### Guides
 
-This repo is a **monorepo whose root is the core package**; the preset packages live under
-`presets/*` as path sub-packages. Run the suite from the root:
+- [Installation](docs/installation.md) — requiring a preset + running the generator.
+- [Architecture](docs/architecture.md) — core engine, generator, registry, base classes.
+- [Configuration](docs/configuration.md) — generated config keys + validation.
+
+### Reference
+
+- [Themes](docs/themes.md) — the theme matrix and how to add one.
+- Presets: [Blade](docs/presets/blade.md) · [Livewire](docs/presets/livewire.md) · [Filament](docs/presets/filament.md) · [Vue](docs/presets/vue.md).
+
+### Project
+
+- [Changelog](CHANGELOG.md) — release history.
+
+## Stability
+
+Pre-1.0 (0.x) — the public API may change between minor versions. Pin a version before bumping.
+
+## Local development
+
+This repo is a **monorepo whose root is the core package**; the preset packages live under `presets/*` as
+path sub-packages. Run the suite from the root:
 
 ```bash
 composer test
 ```
 
+## Sister packages
+
+- [`laranail/license-verifier`](https://github.com/laranail/license-verifier) — the verification engine these UIs front.
+- [`laranail/license-kit`](https://github.com/laranail/license-kit) — the self-hosted licensing server.
+
 Part of the [laranail licensing ecosystem](https://opensource.simtabi.com/license-verifier/).
+
+## Community
+
+- [Issues](https://github.com/laranail/license-verifier-ui/issues) — bugs + feature requests.
+
+## Contributing & security
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — workflow + coding standards.
+- [SECURITY.md](SECURITY.md) — how to report a vulnerability.
+
+## License
+
+MIT © Simtabi LLC. See [LICENSE](LICENSE).
