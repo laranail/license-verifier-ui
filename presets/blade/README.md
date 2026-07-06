@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-> Blade UI preset for [`laranail/license-verifier-ui`](https://opensource.simtabi.com/license-verifier-ui/).
+> Blade UI preset for [`laranail/license-verifier-ui`](https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/).
 
 ```bash
 composer require laranail/license-verifier-ui-blade
@@ -14,4 +14,4 @@ namespace and path — that extends this package. Pick a theme: **tailwind, boot
 unstyled, custom**.
 
 Requires PHP `^8.4 || ^8.5`, Laravel `^13`, and `laranail/license-verifier-ui` (pulled
-automatically). See the [ecosystem docs](https://opensource.simtabi.com/license-verifier-ui/docs/).
+automatically). See the [ecosystem docs](https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/docs/).
