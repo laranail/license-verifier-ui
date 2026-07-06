@@ -5,11 +5,11 @@ All notable changes to `laranail/license-verifier-ui` are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.1.0] - 2026-07-06
 
 ### Added
 
-- **Core UI engine + preset generator.** `laranail/license-verifier-ui` is now the core that
+- **Core UI engine + preset generator.** `laranail/license-verifier-ui` is the core that
   published presets extend and use. It ships a stub-based generator that scaffolds an owned,
   thin preset package into the host app under a user-chosen namespace, path and theme, then
   registers it via composer.
@@ -30,9 +30,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   surfaced on the activation form and acted on by every theme's script (the four vanilla-JS themes
   and the Alpine component), and the Filament `navigation_group` drives the generated page's
   navigation group.
-
-### Changed
-
-- Replaces the previous single merged package (and the four original
-  `laranail/license-verifier-*-preset` packages). Publishing is now generation: a real, owned,
-  composer-registered package per preset, rather than scattered `vendor:publish` output.

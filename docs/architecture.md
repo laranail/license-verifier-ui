@@ -2,10 +2,9 @@
 
 ## Monorepo, root = core
 
-The repository at `licensing/verifier-ui/` **is** the published core package
-`laranail/license-verifier-ui`, and also the monorepo root. The four preset packages are
-publishable path sub-packages under `presets/*`. The root `composer.json` declares dev-only path
-repositories to `presets/*` (and `../verifier`, `../../package/tools`) and `require-dev`s the
+This repository **is** the published core package `laranail/license-verifier-ui`, and also the
+monorepo root. The four preset packages are publishable path sub-packages under `presets/*`. The
+root `composer.json` declares dev-only path repositories to `presets/*` and `require-dev`s the
 preset packages so a single test suite covers everything. Consumers of the published core ignore
 those dev `repositories`/`require-dev`.
 
