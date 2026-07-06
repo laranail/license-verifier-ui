@@ -18,7 +18,7 @@ jobs:
         php: ['8.4', '8.5']
     name: PHP ${{ matrix.php }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -35,7 +35,7 @@ jobs:
         preset: [vue, blade]
     name: JS (${{ matrix.preset }})
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
