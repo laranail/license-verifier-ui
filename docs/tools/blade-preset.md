@@ -22,4 +22,6 @@ Themes: tailwind, bootstrap, alpine, unstyled, custom.
 The `license/unlicensed` page is a full, styled activation screen. The form posts to the JSON
 `activate` endpoint via the bundled JS (progressive enhancement — it still submits without JS).
 
+---
+
 [← Docs index](../../README.md#documentation)

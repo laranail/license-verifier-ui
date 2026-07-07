@@ -30,4 +30,6 @@ separate `alpine` theme. Filament renders through its own design system.)
 2. Add the theme key to that preset's `supportedThemes` in `presets/<preset>/src/Presets/<Preset>PresetDefinition.php`.
 3. The generation test loops every `supportedTheme`, so it will be covered automatically.
 
-[← Docs index](../README.md#documentation)
+---
+
+[← Docs index](../../README.md#documentation)

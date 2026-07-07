@@ -1,5 +1,7 @@
 # Architecture
 
+How the core engine, the preset packages, and the generated package relate.
+
 ## Monorepo, root = core
 
 This repository **is** the published core package `laranail/license-verifier-ui`, and also the
@@ -37,5 +39,7 @@ real Blade alongside generator tokens. The generator asserts no placeholder is l
 A thin, owned package: its provider extends the base provider (and is auto-discovered via
 `extra.laravel.providers`), its controllers/components subclass the base classes, and its
 `resources/` holds the chosen theme. The base classes — and their updates — stay in the core.
+
+---
 
 [← Docs index](../README.md#documentation)

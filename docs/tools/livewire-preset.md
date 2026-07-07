@@ -21,4 +21,6 @@ Themes: tailwind, bootstrap, unstyled, custom (Livewire bundles Alpine, so no se
 Rename the aliases via `config/license-verifier-livewire.php` (`components.activation_form`,
 `components.status_widget`).
 
+---
+
 [← Docs index](../../README.md#documentation)

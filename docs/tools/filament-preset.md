@@ -25,4 +25,6 @@ public function panel(Panel $panel): Panel
 }
 ```
 
+---
+
 [← Docs index](../../README.md#documentation)

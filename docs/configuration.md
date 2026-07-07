@@ -1,5 +1,7 @@
 # Configuration
 
+The core's generator defaults, each generated package's own config, and install-time validation.
+
 ## Core (generator defaults)
 
 `config/license-verifier-ui.php` configures the install command — `default_theme` and
@@ -34,5 +36,7 @@ key `license-verifier-<preset>` by its provider:
 - **Path** must be relative, resolve **inside `base_path()`**, have a writable parent, and not be
   a protected directory (`vendor/`, `node_modules/`, `storage/framework`, `.git`). A non-empty
   existing target is refused unless `--force`.
+
+---
 
 [← Docs index](../README.md#documentation)

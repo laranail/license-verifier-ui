@@ -28,4 +28,6 @@ mountLicenseVerifier('#lv-license-app')
 Drop `@include('license-verifier-vue::mount')` where you want the form; it passes the endpoint
 URLs + CSRF token as data attributes.
 
+---
+
 [← Docs index](../../README.md#documentation)
