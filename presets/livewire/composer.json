@@ -1,12 +1,28 @@
 {
     "name": "laranail/license-verifier-ui-livewire",
     "description": "Livewire UI preset for laranail/license-verifier-ui — generates owned, themeable Livewire license components.",
-    "keywords": ["laravel", "license", "livewire", "ui", "preset", "laranail"],
-    "homepage": "https://opensource.simtabi.com/license-verifier-ui-livewire/",
+    "keywords": [
+        "laravel",
+        "license",
+        "livewire",
+        "ui",
+        "preset",
+        "laranail"
+    ],
+    "homepage": "https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/",
     "license": "MIT",
     "authors": [
-        { "name": "Simtabi LLC", "email": "opensource@simtabi.com", "homepage": "https://opensource.simtabi.com", "role": "Organization" },
-        { "name": "Imani Manyara", "email": "imani@simtabi.com", "role": "Maintainer" }
+        {
+            "name": "Simtabi LLC",
+            "email": "opensource@simtabi.com",
+            "homepage": "https://opensource.simtabi.com",
+            "role": "Organization"
+        },
+        {
+            "name": "Imani Manyara",
+            "email": "imani@simtabi.com",
+            "role": "Maintainer"
+        }
     ],
     "require": {
         "php": "^8.4 || ^8.5",
@@ -15,11 +31,15 @@
         "livewire/livewire": "^3.5"
     },
     "autoload": {
-        "psr-4": { "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Livewire\\": "src/" }
+        "psr-4": {
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Livewire\\": "src/"
+        }
     },
     "extra": {
         "laravel": {
-            "providers": ["Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Livewire\\Providers\\LivewireServiceProvider"]
+            "providers": [
+                "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Livewire\\Providers\\LivewireServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

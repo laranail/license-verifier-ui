@@ -1,12 +1,28 @@
 {
     "name": "laranail/license-verifier-ui-filament",
     "description": "Filament UI preset for laranail/license-verifier-ui — generates an owned license management page + status widget plugin.",
-    "keywords": ["laravel", "license", "filament", "ui", "preset", "laranail"],
-    "homepage": "https://opensource.simtabi.com/license-verifier-ui-filament/",
+    "keywords": [
+        "laravel",
+        "license",
+        "filament",
+        "ui",
+        "preset",
+        "laranail"
+    ],
+    "homepage": "https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/",
     "license": "MIT",
     "authors": [
-        { "name": "Simtabi LLC", "email": "opensource@simtabi.com", "homepage": "https://opensource.simtabi.com", "role": "Organization" },
-        { "name": "Imani Manyara", "email": "imani@simtabi.com", "role": "Maintainer" }
+        {
+            "name": "Simtabi LLC",
+            "email": "opensource@simtabi.com",
+            "homepage": "https://opensource.simtabi.com",
+            "role": "Organization"
+        },
+        {
+            "name": "Imani Manyara",
+            "email": "imani@simtabi.com",
+            "role": "Maintainer"
+        }
     ],
     "require": {
         "php": "^8.4 || ^8.5",
@@ -15,11 +31,15 @@
         "filament/filament": "^4.0 || ^3.2"
     },
     "autoload": {
-        "psr-4": { "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Filament\\": "src/" }
+        "psr-4": {
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Filament\\": "src/"
+        }
     },
     "extra": {
         "laravel": {
-            "providers": ["Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Filament\\Providers\\FilamentServiceProvider"]
+            "providers": [
+                "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Filament\\Providers\\FilamentServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

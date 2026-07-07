@@ -1,12 +1,28 @@
 {
     "name": "laranail/license-verifier-ui-blade",
     "description": "Blade UI preset for laranail/license-verifier-ui — generates an owned, themeable Blade license UI (tailwind, bootstrap, alpine, unstyled, custom).",
-    "keywords": ["laravel", "license", "blade", "ui", "preset", "laranail"],
-    "homepage": "https://opensource.simtabi.com/license-verifier-ui-blade/",
+    "keywords": [
+        "laravel",
+        "license",
+        "blade",
+        "ui",
+        "preset",
+        "laranail"
+    ],
+    "homepage": "https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/",
     "license": "MIT",
     "authors": [
-        { "name": "Simtabi LLC", "email": "opensource@simtabi.com", "homepage": "https://opensource.simtabi.com", "role": "Organization" },
-        { "name": "Imani Manyara", "email": "imani@simtabi.com", "role": "Maintainer" }
+        {
+            "name": "Simtabi LLC",
+            "email": "opensource@simtabi.com",
+            "homepage": "https://opensource.simtabi.com",
+            "role": "Organization"
+        },
+        {
+            "name": "Imani Manyara",
+            "email": "imani@simtabi.com",
+            "role": "Maintainer"
+        }
     ],
     "require": {
         "php": "^8.4 || ^8.5",
@@ -15,11 +31,15 @@
         "laranail/license-verifier-ui": "@dev"
     },
     "autoload": {
-        "psr-4": { "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Blade\\": "src/" }
+        "psr-4": {
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Blade\\": "src/"
+        }
     },
     "extra": {
         "laravel": {
-            "providers": ["Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Blade\\Providers\\BladeServiceProvider"]
+            "providers": [
+                "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Blade\\Providers\\BladeServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
