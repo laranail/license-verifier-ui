@@ -1,0 +1,18 @@
+{
+    "name": "license-verifier-ui-vue",
+    "description": "JS test harness for the generated Vue license-verifier SFC.",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "test": "vitest run",
+        "test:watch": "vitest"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.2.0",
+        "@vue/test-utils": "^2.4.6",
+        "jsdom": "^25.0.0",
+        "vitest": "^3.2.6",
+        "vue": "^3.5.0"
+    }
+}

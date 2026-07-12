@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace $PHP_NAMESPACE$;
+
+use $BASE_NAMESPACE$\Filament\Plugin\BaseLicenseVerifierPlugin;
+use $PHP_NAMESPACE$\Filament\Pages\LicensePage;
+use $PHP_NAMESPACE$\Filament\Widgets\LicenseStatusWidget;
+
+final class LicenseVerifierPlugin extends BaseLicenseVerifierPlugin
+{
+    protected function pages(): array
+    {
+        return [LicensePage::class];
+    }
+
+    protected function widgets(): array
+    {
+        return [LicenseStatusWidget::class];
+    }
+}

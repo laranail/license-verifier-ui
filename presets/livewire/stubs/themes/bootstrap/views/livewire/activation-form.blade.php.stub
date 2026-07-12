@@ -1,0 +1,25 @@
+<div>
+    <form wire:submit="activate" class="lv-license-form">
+        @foreach ($fields as $field)
+            @php($name = $field['name'] ?? 'license_key')
+            @php($type = $field['type'] ?? 'text')
+            @php($label = $field['label'] ?? \Illuminate\Support\Str::headline($name))
+            @if ($type === 'checkbox')
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" wire:model="agreement" id="lv-{{ $name }}">
+                    <label class="form-check-label" for="lv-{{ $name }}">{{ $label }}</label>
+                </div>
+            @else
+                <div class="mb-3">
+                    <label for="lv-{{ $name }}" class="form-label">{{ $label }}</label>
+                    <input id="lv-{{ $name }}" type="{{ $type }}" class="form-control"
+                           wire:model="{{ $name === 'license_key' ? 'licenseKey' : 'client' }}">
+                </div>
+            @endif
+        @endforeach
+        <button type="submit" class="btn btn-primary w-100">{{ __('license-verifier::license-verifier.activate') }}</button>
+        @if ($message)
+            <p class="small mt-2 {{ $activated ? 'text-success' : 'text-danger' }}">{{ $message }}</p>
+        @endif
+    </form>
+</div>

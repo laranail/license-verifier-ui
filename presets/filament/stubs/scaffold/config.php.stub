@@ -1,0 +1,10 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    /*
+    | The Filament navigation group the license page is placed under.
+    */
+    'navigation_group' => env('LICENSE_VERIFIER_FILAMENT_GROUP', 'Settings'),
+];

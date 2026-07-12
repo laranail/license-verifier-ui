@@ -1,0 +1,50 @@
+{
+    "name": "laranail/license-verifier-ui-vue",
+    "description": "Vue 3 UI preset for laranail/license-verifier-ui \u2014 generates an owned, themeable LicenseForm SFC + JSON endpoints.",
+    "keywords": [
+        "laravel",
+        "license",
+        "vue",
+        "ui",
+        "preset",
+        "laranail"
+    ],
+    "homepage": "https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simtabi LLC",
+            "email": "opensource@simtabi.com",
+            "homepage": "https://opensource.simtabi.com",
+            "role": "Organization"
+        },
+        {
+            "name": "Imani Manyara",
+            "email": "imani@simtabi.com",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "php": "^8.4 || ^8.5",
+        "illuminate/support": "^13.0",
+        "illuminate/http": "^13.0",
+        "laranail/license-verifier-ui": "^0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Vue\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Vue\\Providers\\VueServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

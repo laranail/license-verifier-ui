@@ -1,0 +1,28 @@
+# $COMPOSER_NAME$
+
+A generated **license-verifier UI** package — $PRESET_LABEL$ (`$THEME` theme).
+It extends [`$BASE_PACKAGE$`](https://opensource.simtabi.com/license-verifier-ui-livewire/),
+which carries the logic and ships updates; this package is **yours to own and edit**.
+
+## What you own
+
+- `src/Providers/` — the package service provider (`$PROVIDER_FQCN`), auto-discovered by Laravel.
+- `src/Components/` — `ActivationForm` and `StatusWidget` Livewire components extending the base.
+- `config/$CONFIG_KEY$.php` — component aliases and permission settings.
+- `resources/views/livewire/` — the `$VIEW_NAMESPACE$::*` component views. Restyle freely.
+
+## Usage
+
+Drop the components into any Blade view (aliases are configurable in
+`config/$CONFIG_KEY$.php`):
+
+```blade
+<livewire:lv-activation-form />
+<livewire:lv-status-widget />
+```
+
+## Customising
+
+Edit the views and config directly — nothing here is overwritten by composer
+updates. To change behaviour shared with other apps, contribute upstream to
+`$BASE_PACKAGE$`.

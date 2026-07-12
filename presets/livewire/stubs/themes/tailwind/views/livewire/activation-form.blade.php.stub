@@ -1,0 +1,27 @@
+<div>
+    <form wire:submit="activate" class="space-y-4">
+        @foreach ($fields as $field)
+            @php($name = $field['name'] ?? 'license_key')
+            @php($type = $field['type'] ?? 'text')
+            @php($label = $field['label'] ?? \Illuminate\Support\Str::headline($name))
+            <div class="lv-field">
+                @if ($type === 'checkbox')
+                    <label class="flex items-center gap-2 text-sm text-slate-200">
+                        <input type="checkbox" wire:model="agreement" class="rounded border-slate-600 bg-slate-900 text-indigo-500">
+                        <span>{{ $label }}</span>
+                    </label>
+                @else
+                    <label class="mb-1 block text-sm font-medium text-slate-200">{{ $label }}</label>
+                    <input type="{{ $type }}" wire:model="{{ $name === 'license_key' ? 'licenseKey' : 'client' }}"
+                           class="w-full rounded-lg border border-slate-600 bg-slate-900 px-3 py-2 text-slate-100 focus:border-indigo-500 focus:outline-none">
+                @endif
+            </div>
+        @endforeach
+        <button type="submit" class="w-full rounded-lg bg-indigo-600 px-4 py-2 font-semibold text-white transition hover:bg-indigo-500">
+            {{ __('license-verifier::license-verifier.activate') }}
+        </button>
+        @if ($message)
+            <p class="text-sm {{ $activated ? 'text-emerald-400' : 'text-rose-400' }}">{{ $message }}</p>
+        @endif
+    </form>
+</div>

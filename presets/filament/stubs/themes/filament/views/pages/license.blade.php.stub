@@ -1,0 +1,27 @@
+<x-filament-panels::page>
+    @php($info = $this->getLicenseInfo())
+    @if (($info['status'] ?? null) === 'valid')
+        <x-filament::section :heading="__('license-verifier::license-verifier.license')">
+            <p>{{ __('license-verifier::license-verifier.licensed_to') }}: {{ $info['licensedTo'] ?? '—' }}</p>
+            <p>{{ __('license-verifier::license-verifier.expires_at') }}: {{ $info['expiresAt'] ?? '—' }}</p>
+            <x-slot name="afterHeader">
+                <x-filament::button wire:click="deactivate" color="danger">
+                    {{ __('license-verifier::license-verifier.deactivate') }}
+                </x-filament::button>
+            </x-slot>
+        </x-filament::section>
+    @else
+        <x-filament::section :heading="__('license-verifier::license-verifier.activation')">
+            <x-filament::input.wrapper>
+                <x-filament::input
+                    type="text"
+                    wire:model="licenseKey"
+                    :placeholder="__('license-verifier::license-verifier.license_key')"
+                />
+            </x-filament::input.wrapper>
+            <x-filament::button wire:click="activate" class="mt-3">
+                {{ __('license-verifier::license-verifier.activate') }}
+            </x-filament::button>
+        </x-filament::section>
+    @endif
+</x-filament-panels::page>

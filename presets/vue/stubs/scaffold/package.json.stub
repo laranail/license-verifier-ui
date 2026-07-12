@@ -1,0 +1,15 @@
+{
+    "name": "@$VENDOR_KEBAB$/$PACKAGE_KEBAB$",
+    "version": "0.1.0",
+    "description": "$PRESET_LABEL$ — generated Vue 3 license component.",
+    "type": "module",
+    "main": "resources/js/entry.js",
+    "exports": {
+        ".": "./resources/js/entry.js",
+        "./LicenseForm.vue": "./resources/js/components/LicenseForm.vue"
+    },
+    "peerDependencies": {
+        "vue": "^3.4"
+    },
+    "license": "MIT"
+}

@@ -1,0 +1,17 @@
+<?php
+
+declare(strict_types=1);
+
+namespace $PHP_NAMESPACE$\Filament\Pages;
+
+use $BASE_NAMESPACE$\Filament\Filament\Pages\BaseLicensePage;
+
+class LicensePage extends BaseLicensePage
+{
+    protected string $view = '$VIEW_NAMESPACE$::pages.license';
+
+    public static function getNavigationGroup(): string|\UnitEnum|null
+    {
+        return config('$CONFIG_KEY$.navigation_group', 'Settings');
+    }
+}
