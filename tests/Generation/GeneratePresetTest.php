@@ -63,7 +63,7 @@ it('generates a blade tailwind package with all tokens resolved', function (): v
 
     // The view cross-include was retargeted to the view namespace.
     expect(file_get_contents($root.'/resources/views/unlicensed.blade.php'))
-        ->toContain("@include('license-verifier-blade::license-form')")
+        ->toContain("@include('laranail-license-verifier-blade::license-form')")
         ->toContain('vendor/license-verifier-blade/license-verifier.js');
 
     // No leftover tokens, and generated PHP is syntactically valid.

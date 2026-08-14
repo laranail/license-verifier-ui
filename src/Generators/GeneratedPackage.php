@@ -59,7 +59,7 @@ final readonly class GeneratedPackage
 
     public function viewNamespace(): string
     {
-        return 'license-verifier-'.$this->presetKey;
+        return 'laranail-license-verifier-'.$this->presetKey;
     }
 
     public function configKey(): string
