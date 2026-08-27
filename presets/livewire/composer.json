@@ -1,5 +1,6 @@
 {
     "name": "laranail/license-verifier-ui-livewire",
+    "version": "0.1.0",
     "description": "Livewire UI preset for laranail/license-verifier-ui \u2014 generates owned, themeable Livewire license components.",
     "keywords": [
         "laravel",

@@ -1,5 +1,6 @@
 {
     "name": "laranail/license-verifier-ui-filament",
+    "version": "0.1.0",
     "description": "Filament UI preset for laranail/license-verifier-ui \u2014 generates an owned license management page + status widget plugin.",
     "keywords": [
         "laravel",

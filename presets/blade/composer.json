@@ -1,5 +1,6 @@
 {
     "name": "laranail/license-verifier-ui-blade",
+    "version": "0.1.0",
     "description": "Blade UI preset for laranail/license-verifier-ui \u2014 generates an owned, themeable Blade license UI (tailwind, bootstrap, alpine, unstyled, custom).",
     "keywords": [
         "laravel",
