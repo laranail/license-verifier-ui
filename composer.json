@@ -30,7 +30,7 @@
         "docs": "https://opensource.simtabi.com/documentation/laranail/license-verifier-ui/"
     },
     "require": {
-        "php": "^8.4 || ^8.5",
+        "php": "^8.4.1 || ^8.5",
         "illuminate/support": "^13.0",
         "illuminate/console": "^13.0",
         "illuminate/http": "^13.0",
