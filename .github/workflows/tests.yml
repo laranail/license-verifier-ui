@@ -9,6 +9,15 @@ on:
 permissions:
   contents: read
 
+
+# The presets in presets/* are consumed as `path` repositories and each requires
+# laranail/license-verifier-ui ^0.1 back. On a pull request Composer sees the root
+# package as dev-<merge-sha>, which no semver constraint matches, and the
+# extra.branch-alias only covers dev-main. Telling Composer what version the root
+# is resolves it -- see https://getcomposer.org/dep-on-root.
+env:
+  COMPOSER_ROOT_VERSION: '0.1.0'
+
 jobs:
   pest:
     runs-on: ubuntu-latest
