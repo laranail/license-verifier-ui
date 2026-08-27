@@ -1,5 +1,6 @@
 {
     "name": "laranail/license-verifier-ui-vue",
+    "version": "0.1.0",
     "description": "Vue 3 UI preset for laranail/license-verifier-ui \u2014 generates an owned, themeable LicenseForm SFC + JSON endpoints.",
     "keywords": [
         "laravel",
