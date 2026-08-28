@@ -41,10 +41,6 @@
     },
     "require-dev": {
         "filament/filament": "^4.0 || ^3.2",
-        "laranail/license-verifier-ui-blade": "^0.1",
-        "laranail/license-verifier-ui-filament": "^0.1",
-        "laranail/license-verifier-ui-livewire": "^0.1",
-        "laranail/license-verifier-ui-vue": "^0.1",
         "larastan/larastan": "^3.0",
         "laravel/pint": "^1.18",
         "livewire/livewire": "^3.5",

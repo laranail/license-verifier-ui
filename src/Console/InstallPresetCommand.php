@@ -43,7 +43,7 @@ final class InstallPresetCommand extends Command
         if ($registry->all() === []) {
             $this->components->warn(
                 'No preset packages are installed. Require one first, e.g. '
-                . '`composer require laranail/license-verifier-ui-blade`.',
+                . '`composer require laranail/license-verifier-ui-preset`.',
             );
 
             return self::FAILURE;

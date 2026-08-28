@@ -19,7 +19,7 @@ final class ListPresetsCommand extends Command
     public function handle(PresetRegistry $registry): int
     {
         if ($registry->all() === []) {
-            $this->components->info('No preset packages installed. Try `composer require laranail/license-verifier-ui-blade`.');
+            $this->components->info('No preset packages installed. Try `composer require laranail/license-verifier-ui-preset`.');
 
             return self::SUCCESS;
         }
