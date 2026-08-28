@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Livewire\LivewireServiceProvider as LivewireFrameworkServiceProvider;
 use Simtabi\Laranail\Licence\Verifier\Presets\Vue\Providers\VueServiceProvider;
 use Simtabi\Laranail\Licence\Verifier\Providers\LicenceVerifierServiceProvider;
@@ -12,8 +11,9 @@ use Simtabi\Laranail\Licence\Verifier\Presets\Blade\Providers\BladeServiceProvid
 use Simtabi\Laranail\Licence\Verifier\Presets\Filament\Providers\FilamentServiceProvider;
 use Simtabi\Laranail\Licence\Verifier\Presets\Livewire\Providers\LivewireServiceProvider;
 use Simtabi\Laranail\Licence\Verifier\Presets\Providers\LicenseVerifierUiServiceProvider;
+use Simtabi\Laranail\Package\Tools\Testing\IsolatedTestCase;
 
-abstract class TestCase extends Orchestra
+abstract class TestCase extends IsolatedTestCase
 {
     protected function getPackageProviders($app): array
     {
