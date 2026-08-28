@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Livewire\Livewire;
 
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Licence\Verifier\Drivers\DriverManager;
-use Simtabi\Laranail\Licence\Verifier\Presets\Rendering\FieldRenderer;
 use Simtabi\Laranail\Licence\Verifier\ValueObjects\LicenseRequest;
+use Simtabi\Laranail\Licence\Verifier\Presets\Rendering\FieldRenderer;
 
 /**
  * Base Livewire activation form. The generated component subclasses this and
@@ -25,8 +25,6 @@ abstract class BaseActivationForm extends Component
     public ?string $message = null;
 
     public bool $activated = false;
-
-    abstract protected function viewNamespace(): string;
 
     public function activate(DriverManager $drivers): void
     {
@@ -46,8 +44,10 @@ abstract class BaseActivationForm extends Component
 
     public function render(DriverManager $drivers, FieldRenderer $fields): View
     {
-        return view($this->viewNamespace().'::livewire.activation-form', [
+        return view($this->viewNamespace() . '::livewire.activation-form', [
             'fields' => $fields->normalize($drivers->active()->activationFields()),
         ]);
     }
+
+    abstract protected function viewNamespace(): string;
 }

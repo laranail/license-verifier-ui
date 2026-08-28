@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Override;
 use ReflectionClass;
+
+use function dirname;
+
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Base service provider for a generated preset package. Registers the package's
@@ -16,16 +19,10 @@ use ReflectionClass;
  */
 abstract class BasePresetServiceProvider extends ServiceProvider
 {
-    /** The view namespace, e.g. "license-verifier-blade". */
-    abstract protected function viewNamespace(): string;
-
-    /** The config key / file name, e.g. "license-verifier-blade". */
-    abstract protected function configKey(): string;
-
     #[Override]
     public function register(): void
     {
-        $config = $this->packagePath('config/'.$this->configKey().'.php');
+        $config = $this->packagePath('config/' . $this->configKey() . '.php');
 
         if (is_file($config)) {
             $this->mergeConfigFrom($config, $this->configKey());
@@ -43,11 +40,14 @@ abstract class BasePresetServiceProvider extends ServiceProvider
         $this->bootPreset();
     }
 
+    /** The view namespace, e.g. "license-verifier-blade". */
+    abstract protected function viewNamespace(): string;
+
+    /** The config key / file name, e.g. "license-verifier-blade". */
+    abstract protected function configKey(): string;
+
     /** Hook for family bases (routes, Livewire components, …). */
-    protected function bootPreset(): void
-    {
-        //
-    }
+    protected function bootPreset(): void {}
 
     /**
      * Absolute path inside the generated package. The concrete provider lives at
@@ -55,8 +55,8 @@ abstract class BasePresetServiceProvider extends ServiceProvider
      */
     protected function packagePath(string $relative = ''): string
     {
-        $root = \dirname(new ReflectionClass(static::class)->getFileName(), 3);
+        $root = dirname(new ReflectionClass(static::class)->getFileName(), 3);
 
-        return $relative === '' ? $root : $root.'/'.ltrim($relative, '/');
+        return $relative === '' ? $root : $root . '/' . ltrim($relative, '/');
     }
 }

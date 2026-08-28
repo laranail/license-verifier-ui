@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Blade\Http\Controllers;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Simtabi\Laranail\Licence\Verifier\Presets\Http\Controllers\BaseLicenseController;
-use Simtabi\Laranail\Licence\Verifier\Presets\Rendering\FieldRenderer;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Licence\Verifier\Support\ReminderManager;
+use Simtabi\Laranail\Licence\Verifier\Presets\Rendering\FieldRenderer;
+use Simtabi\Laranail\Licence\Verifier\Presets\Http\Controllers\BaseLicenseController;
 
 /**
  * Blade-specific base controller: the shared JSON endpoints plus the unlicensed
@@ -18,14 +18,11 @@ use Simtabi\Laranail\Licence\Verifier\Support\ReminderManager;
  */
 abstract class BaseBladeLicenseController extends BaseLicenseController
 {
-    /** The owning package's view namespace, e.g. "license-verifier-blade". */
-    abstract protected function viewNamespace(): string;
-
     public function unlicensed(FieldRenderer $fields): View
     {
-        return view($this->viewNamespace().'::unlicensed', [
+        return view($this->viewNamespace() . '::unlicensed', [
             'fields' => $fields->normalize($this->drivers->active()->activationFields()),
-            'info' => $this->drivers->active()->getLicenseInfo(),
+            'info'   => $this->drivers->active()->getLicenseInfo(),
         ]);
     }
 
@@ -37,4 +34,7 @@ abstract class BaseBladeLicenseController extends BaseLicenseController
 
         return response()->json(['message' => 'Reminder skipped.']);
     }
+
+    /** The owning package's view namespace, e.g. "license-verifier-blade". */
+    abstract protected function viewNamespace(): string;
 }

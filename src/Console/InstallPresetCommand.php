@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Console;
 
+use Throwable;
 use Illuminate\Support\Str;
 
-use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
+use function Laravel\Prompts\select;
 
-use Simtabi\Laranail\Licence\Verifier\Presets\Events\PresetInstallationFailed;
-use Simtabi\Laranail\Licence\Verifier\Presets\Events\PresetInstalled;
-use Simtabi\Laranail\Licence\Verifier\Presets\Generators\GeneratedPackage;
-use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetDefinition;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 use Simtabi\Laranail\Licence\Verifier\Presets\Themes\Theme;
-use Simtabi\Laranail\Licence\Verifier\Presets\Validation\NamespaceValidator;
-use Simtabi\Laranail\Licence\Verifier\Presets\Validation\PathValidator;
 use Simtabi\Laranail\Package\Tools\Concerns\Package\ManagesComposer;
-use Throwable;
+use Simtabi\Laranail\Licence\Verifier\Presets\Events\PresetInstalled;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetDefinition;
+use Simtabi\Laranail\Licence\Verifier\Presets\Validation\PathValidator;
+use Simtabi\Laranail\Licence\Verifier\Presets\Generators\GeneratedPackage;
+use Simtabi\Laranail\Licence\Verifier\Presets\Validation\NamespaceValidator;
+use Simtabi\Laranail\Licence\Verifier\Presets\Events\PresetInstallationFailed;
+use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
 
 /**
  * Generate ONE owned preset package (the user's namespace/path/theme) that
@@ -43,7 +43,7 @@ final class InstallPresetCommand extends Command
         if ($registry->all() === []) {
             $this->components->warn(
                 'No preset packages are installed. Require one first, e.g. '
-                .'`composer require laranail/license-verifier-ui-blade`.'
+                . '`composer require laranail/license-verifier-ui-blade`.',
             );
 
             return self::FAILURE;
@@ -87,7 +87,7 @@ final class InstallPresetCommand extends Command
         $pathValidator = new PathValidator(base_path());
         $path = text(
             label: 'Where to create the package (relative to your app root)',
-            placeholder: 'packages/licensing/'.$key,
+            placeholder: 'packages/licensing/' . $key,
             required: true,
             validate: fn (string $value): ?string => $pathValidator->validate($value, (bool) $this->option('force')),
             hint: 'You must provide a path; it has no default.',
@@ -150,7 +150,7 @@ final class InstallPresetCommand extends Command
             }
             $this->components->warn(
                 "The \"{$arg}\" preset package is not installed. Require it first: "
-                ."`composer require laranail/license-verifier-ui-{$arg}`."
+                . "`composer require laranail/license-verifier-ui-{$arg}`.",
             );
 
             return null;
@@ -177,7 +177,7 @@ final class InstallPresetCommand extends Command
             }
         }
 
-        return $vendor.'/license-verifier-'.$key;
+        return $vendor . '/license-verifier-' . $key;
     }
 
     /**
@@ -209,7 +209,7 @@ final class InstallPresetCommand extends Command
 
         return text(
             label: 'PHP namespace for the generated package',
-            default: $derivable ? $derived : 'App\\Licensing\\'.Str::studly($key),
+            default: $derivable ? $derived : 'App\\Licensing\\' . Str::studly($key),
             required: true,
             validate: fn (string $value): ?string => $validator->validate($value),
             hint: 'Your own namespace; the generated classes live here and extend the base package.',
@@ -219,7 +219,7 @@ final class InstallPresetCommand extends Command
     /** Derive a StudlyCase PSR-4 namespace from the composer vendor/package. */
     private function deriveNamespace(string $vendor, string $package): string
     {
-        return Str::studly($vendor).'\\'.Str::studly($package);
+        return Str::studly($vendor) . '\\' . Str::studly($package);
     }
 
     private function registerWithComposer(GeneratedPackage $pkg): bool
@@ -250,7 +250,7 @@ final class InstallPresetCommand extends Command
         }
 
         $this->composerDumpAutoload();
-        $this->components->info('Registered '.$pkg->composerName().' and dumped the autoloader.');
+        $this->components->info('Registered ' . $pkg->composerName() . ' and dumped the autoloader.');
 
         return true;
     }
@@ -260,7 +260,7 @@ final class InstallPresetCommand extends Command
         $repo = json_encode(['type' => 'path', 'url' => $pkg->path, 'options' => ['symlink' => $this->shouldSymlink()]]);
         $this->components->bulletList([
             "composer config repositories.{$pkg->vendorKebab()}/{$pkg->packageKebab()} '{$repo}'",
-            'composer require '.$pkg->composerName().':@dev',
+            'composer require ' . $pkg->composerName() . ':@dev',
         ]);
     }
 

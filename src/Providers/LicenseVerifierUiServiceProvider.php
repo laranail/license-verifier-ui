@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Providers;
 
+use Override;
 use Composer\InstalledVersions;
 use Illuminate\Filesystem\Filesystem;
-use Override;
-use Simtabi\Laranail\Licence\Verifier\Presets\Console\DoctorCommand;
-use Simtabi\Laranail\Licence\Verifier\Presets\Console\InstallPresetCommand;
-use Simtabi\Laranail\Licence\Verifier\Presets\Console\ListPresetsCommand;
-use Simtabi\Laranail\Licence\Verifier\Presets\Console\UninstallPresetCommand;
-use Simtabi\Laranail\Licence\Verifier\Presets\Doctor\Checks;
-use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
-use Simtabi\Laranail\Licence\Verifier\Presets\Generators\StubRenderer;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
-use Simtabi\Laranail\Licence\Verifier\Presets\Rendering\FieldRenderer;
 use Simtabi\Laranail\Package\Tools\Package;
+use Simtabi\Laranail\Licence\Verifier\Presets\Doctor\Checks;
+use Simtabi\Laranail\Licence\Verifier\Presets\Console\DoctorCommand;
 use Simtabi\Laranail\Package\Tools\Providers\PackageServiceProvider;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
+use Simtabi\Laranail\Licence\Verifier\Presets\Generators\StubRenderer;
+use Simtabi\Laranail\Licence\Verifier\Presets\Rendering\FieldRenderer;
+use Simtabi\Laranail\Licence\Verifier\Presets\Console\ListPresetsCommand;
+use Simtabi\Laranail\Licence\Verifier\Presets\Console\InstallPresetCommand;
+use Simtabi\Laranail\Licence\Verifier\Presets\Console\UninstallPresetCommand;
 use Simtabi\Laranail\Package\Tools\Support\Definitions\AboutSectionDefinition;
+use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
 
 /**
  * Core service provider. Registers the generator/registry and the install,
@@ -43,7 +43,7 @@ final class LicenseVerifierUiServiceProvider extends PackageServiceProvider
             ->hasDoctorChecks(Checks::all())
             ->hasAboutSection(
                 AboutSectionDefinition::make('License Verifier UI')
-                    ->field('Version', fn (): string => (string) InstalledVersions::getPrettyVersion('laranail/license-verifier-ui'))
+                    ->field('Version', fn (): string => (string) InstalledVersions::getPrettyVersion('laranail/license-verifier-ui')),
             );
     }
 

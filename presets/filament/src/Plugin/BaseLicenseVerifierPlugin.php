@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Filament\Plugin;
 
-use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Filament\Contracts\Plugin;
 
 /**
  * Base Filament plugin registering the license page + status widget on a panel.
@@ -23,6 +23,13 @@ abstract class BaseLicenseVerifierPlugin implements Plugin
         return 'license-verifier';
     }
 
+    public function register(Panel $panel): void
+    {
+        $panel->pages($this->pages())->widgets($this->widgets());
+    }
+
+    public function boot(Panel $panel): void {}
+
     /**
      * @return list<class-string>
      */
@@ -32,14 +39,4 @@ abstract class BaseLicenseVerifierPlugin implements Plugin
      * @return list<class-string>
      */
     abstract protected function widgets(): array;
-
-    public function register(Panel $panel): void
-    {
-        $panel->pages($this->pages())->widgets($this->widgets());
-    }
-
-    public function boot(Panel $panel): void
-    {
-        //
-    }
 }

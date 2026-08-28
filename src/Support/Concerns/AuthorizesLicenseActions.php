@@ -17,7 +17,7 @@ trait AuthorizesLicenseActions
 
     protected function authorizeManagement(Request $request): void
     {
-        $permission = config($this->configKey().'.permission');
+        $permission = config($this->configKey() . '.permission');
 
         if ($permission !== null && ! ($request->user()?->can($permission) ?? false)) {
             abort(403, 'You are not authorized to manage the license.');

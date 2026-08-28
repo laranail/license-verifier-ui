@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Livewire\Livewire;
 
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Illuminate\Contracts\View\View;
 use Simtabi\Laranail\Licence\Verifier\Drivers\DriverManager;
 
 /**
@@ -14,15 +14,15 @@ use Simtabi\Laranail\Licence\Verifier\Drivers\DriverManager;
  */
 abstract class BaseStatusWidget extends Component
 {
-    abstract protected function viewNamespace(): string;
-
     public function render(DriverManager $drivers): View
     {
         $result = $drivers->active()->verify();
 
-        return view($this->viewNamespace().'::livewire.status-widget', [
+        return view($this->viewNamespace() . '::livewire.status-widget', [
             'status' => $result->status->label(),
-            'valid' => $result->isUsable(),
+            'valid'  => $result->isUsable(),
         ]);
     }
+
+    abstract protected function viewNamespace(): string;
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Validation;
 
+use function dirname;
+
 use RuntimeException;
 use Simtabi\Laranail\Package\Tools\Support\PathResolver;
 
@@ -44,7 +46,7 @@ final readonly class PathValidator
         $normalized = str_replace('\\', '/', trim($path, '/'));
 
         foreach (self::PROTECTED_PREFIXES as $protected) {
-            if ($normalized === $protected || str_starts_with($normalized.'/', $protected.'/')) {
+            if ($normalized === $protected || str_starts_with($normalized . '/', $protected . '/')) {
                 return "Refusing to write into the protected directory \"{$protected}\".";
             }
         }
@@ -60,10 +62,10 @@ final readonly class PathValidator
             return "\"{$path}\" already exists and is not empty. Re-run with --force to overwrite.";
         }
 
-        $parent = \dirname($absolute);
+        $parent = dirname($absolute);
         $existingAncestor = $parent;
-        while (! is_dir($existingAncestor) && \dirname($existingAncestor) !== $existingAncestor) {
-            $existingAncestor = \dirname($existingAncestor);
+        while (! is_dir($existingAncestor) && dirname($existingAncestor) !== $existingAncestor) {
+            $existingAncestor = dirname($existingAncestor);
         }
 
         if (! is_writable($existingAncestor)) {

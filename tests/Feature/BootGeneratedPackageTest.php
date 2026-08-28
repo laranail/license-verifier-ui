@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 use Simtabi\Laranail\Licence\Verifier\Presets\Generators\GeneratedPackage;
 use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 
 /**
  * End-to-end "ready to use" proof: generate a Blade package, register its
@@ -14,7 +14,7 @@ use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 it('boots a generated blade package and serves a working license UI', function (): void {
     $def = app(PresetRegistry::class)->get('blade');
 
-    $tmp = sys_get_temp_dir().'/lvui-boot-'.uniqid();
+    $tmp = sys_get_temp_dir() . '/lvui-boot-' . uniqid();
     mkdir($tmp, 0777, true);
 
     $pkg = new GeneratedPackage(
@@ -28,12 +28,12 @@ it('boots a generated blade package and serves a working license UI', function (
     );
 
     app(PresetPackageGenerator::class)->generate($pkg, $def, $tmp, force: true);
-    $root = $tmp.'/pkg';
+    $root = $tmp . '/pkg';
 
     // Autoload the generated classes (package discovery would do this via composer)
     // and register the provider the same way Laravel would.
-    require $root.'/src/Http/Controllers/LicenseController.php';
-    require $root.'/src/Providers/BladePresetServiceProvider.php';
+    require $root . '/src/Http/Controllers/LicenseController.php';
+    require $root . '/src/Providers/BladePresetServiceProvider.php';
     $this->app->register('Acme\\BootBlade\\Providers\\BladePresetServiceProvider');
 
     // The unlicensed page renders the driver-aware form...
