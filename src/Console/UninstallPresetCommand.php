@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Console;
 
-use function Laravel\Prompts\select;
-use function Laravel\Prompts\confirm;
-
 use Illuminate\Filesystem\Filesystem;
-use Simtabi\Laranail\Package\Tools\Concerns\Package\ManagesComposer;
 use Simtabi\Laranail\Licence\Verifier\Presets\Events\PresetUninstalled;
+use Simtabi\Laranail\Package\Tools\Concerns\Package\ManagesComposer;
+
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\select;
 
 /**
  * Remove a generated preset package: composer-remove it and drop its path
@@ -94,7 +94,7 @@ final class UninstallPresetCommand extends Command
             if (! isset($repo['url'])) {
                 continue;
             }
-            $pkgJson = base_path($repo['url']) . '/composer.json';
+            $pkgJson = base_path($repo['url']).'/composer.json';
             if (! is_file($pkgJson)) {
                 continue;
             }

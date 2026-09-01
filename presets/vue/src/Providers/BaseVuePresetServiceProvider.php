@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Vue\Providers;
 
-use Override;
 use Illuminate\Support\Facades\Route;
+use Override;
 use Simtabi\Laranail\Licence\Verifier\Presets\Providers\BasePresetServiceProvider;
 
 /**
@@ -17,7 +17,7 @@ abstract class BaseVuePresetServiceProvider extends BasePresetServiceProvider
     #[Override]
     protected function bootPreset(): void
     {
-        if (! config($this->configKey() . '.routes.enabled', true)) {
+        if (! config($this->configKey().'.routes.enabled', true)) {
             return;
         }
 
@@ -28,9 +28,9 @@ abstract class BaseVuePresetServiceProvider extends BasePresetServiceProvider
         }
 
         Route::group([
-            'prefix'     => config($this->configKey() . '.routes.prefix', 'license'),
-            'as'         => config($this->configKey() . '.routes.name', 'license-verifier-vue.'),
-            'middleware' => config($this->configKey() . '.routes.middleware', ['web']),
+            'prefix' => config($this->configKey().'.routes.prefix', 'license'),
+            'as' => config($this->configKey().'.routes.name', 'license-verifier-vue.'),
+            'middleware' => config($this->configKey().'.routes.middleware', ['web']),
         ], fn () => $this->loadRoutesFrom($routes));
     }
 }

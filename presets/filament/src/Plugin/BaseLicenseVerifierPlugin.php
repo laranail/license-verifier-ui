@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Filament\Plugin;
 
-use Filament\Panel;
 use Filament\Contracts\Plugin;
+use Filament\Panel;
 
 /**
  * Base Filament plugin registering the license page + status widget on a panel.

@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Providers;
 
+use Illuminate\Support\ServiceProvider;
 use Override;
 use ReflectionClass;
 
 use function dirname;
-
-use Illuminate\Support\ServiceProvider;
 
 /**
  * Base service provider for a generated preset package. Registers the package's
@@ -22,7 +21,7 @@ abstract class BasePresetServiceProvider extends ServiceProvider
     #[Override]
     public function register(): void
     {
-        $config = $this->packagePath('config/' . $this->configKey() . '.php');
+        $config = $this->packagePath('config/'.$this->configKey().'.php');
 
         if (is_file($config)) {
             $this->mergeConfigFrom($config, $this->configKey());
@@ -57,6 +56,6 @@ abstract class BasePresetServiceProvider extends ServiceProvider
     {
         $root = dirname(new ReflectionClass(static::class)->getFileName(), 3);
 
-        return $relative === '' ? $root : $root . '/' . ltrim($relative, '/');
+        return $relative === '' ? $root : $root.'/'.ltrim($relative, '/');
     }
 }

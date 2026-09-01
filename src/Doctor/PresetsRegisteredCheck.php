@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Doctor;
 
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorCheck;
 use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorResult;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 
 /**
  * At least one preset package should contribute a definition before installing.

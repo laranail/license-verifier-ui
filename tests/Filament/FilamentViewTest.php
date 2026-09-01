@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Blade;
  * and parses all directives, so a broken view stub fails here.
  */
 it('compiles the generated Filament page view with its components resolved', function (): void {
-    $compiled = Blade::compileString(file_get_contents($this->generatedViewsPath . '/pages/license.blade.php'));
+    $compiled = Blade::compileString(file_get_contents($this->generatedViewsPath.'/pages/license.blade.php'));
 
     expect($compiled)
         ->toContain('<?php')
@@ -18,7 +18,7 @@ it('compiles the generated Filament page view with its components resolved', fun
 });
 
 it('compiles the generated Filament widget view with its components resolved', function (): void {
-    $compiled = Blade::compileString(file_get_contents($this->generatedViewsPath . '/widgets/status.blade.php'));
+    $compiled = Blade::compileString(file_get_contents($this->generatedViewsPath.'/widgets/status.blade.php'));
 
     expect($compiled)->toContain('<?php');
 });

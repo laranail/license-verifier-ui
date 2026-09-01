@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Blade\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetDefinition;
 use Simtabi\Laranail\Licence\Verifier\Presets\Blade\Presets\BladePresetDefinition;
 use Simtabi\Laranail\Licence\Verifier\Presets\Presets\Contracts\PresetContributor;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetDefinition;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 
 /**
  * Registers the Blade preset's definition into the core registry so the
@@ -23,6 +23,6 @@ final class BladeServiceProvider extends ServiceProvider implements PresetContri
 
     public function presetDefinition(): PresetDefinition
     {
-        return BladePresetDefinition::make(dirname(__DIR__, 2) . '/stubs');
+        return BladePresetDefinition::make(dirname(__DIR__, 2).'/stubs');
     }
 }

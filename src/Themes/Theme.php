@@ -34,12 +34,12 @@ final class Theme
     public static function labels(): array
     {
         return [
-            self::TAILWIND  => 'Tailwind CSS',
+            self::TAILWIND => 'Tailwind CSS',
             self::BOOTSTRAP => 'Bootstrap 5',
-            self::ALPINE    => 'Tailwind + Alpine.js',
-            self::UNSTYLED  => 'Unstyled (semantic HTML + hooks)',
-            self::CUSTOM    => 'Custom (themeable shells)',
-            self::FILAMENT  => 'Filament design system',
+            self::ALPINE => 'Tailwind + Alpine.js',
+            self::UNSTYLED => 'Unstyled (semantic HTML + hooks)',
+            self::CUSTOM => 'Custom (themeable shells)',
+            self::FILAMENT => 'Filament design system',
         ];
     }
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Livewire\Livewire;
 
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
+use Livewire\Component;
 use Simtabi\Laranail\Licence\Verifier\Drivers\DriverManager;
 
 /**
@@ -18,9 +18,9 @@ abstract class BaseStatusWidget extends Component
     {
         $result = $drivers->active()->verify();
 
-        return view($this->viewNamespace() . '::livewire.status-widget', [
+        return view($this->viewNamespace().'::livewire.status-widget', [
             'status' => $result->status->label(),
-            'valid'  => $result->isUsable(),
+            'valid' => $result->isUsable(),
         ]);
     }
 
