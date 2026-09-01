@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Licence\Verifier\Presets\Validation\PathValidator;
 use Simtabi\Laranail\Licence\Verifier\Presets\Validation\NamespaceValidator;
+use Simtabi\Laranail\Licence\Verifier\Presets\Validation\PathValidator;
 
 it('accepts a valid PSR-4 namespace', function (): void {
     expect((new NamespaceValidator)->isValid('App\\Licensing\\Blade'))->toBeTrue();

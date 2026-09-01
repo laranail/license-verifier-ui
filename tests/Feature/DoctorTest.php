@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorStatus;
 use Simtabi\Laranail\Licence\Verifier\Presets\Doctor\DefaultThemeValidCheck;
+use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorStatus;
 
 it('fails the theme check for an unsupported theme', function (): void {
     config()->set('license-verifier-ui.default_theme', 'neon');

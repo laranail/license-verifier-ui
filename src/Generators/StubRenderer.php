@@ -13,14 +13,14 @@ namespace Simtabi\Laranail\Licence\Verifier\Presets\Generators;
 final class StubRenderer
 {
     /**
-     * @param array<string, string> $tokens token name (without `$` delimiters) => value
+     * @param  array<string, string>  $tokens  token name (without `$` delimiters) => value
      */
     public function render(string $template, array $tokens): string
     {
         $replacements = [];
 
         foreach ($tokens as $name => $value) {
-            $replacements['$' . $name . '$'] = $value;
+            $replacements['$'.$name.'$'] = $value;
         }
 
         return strtr($template, $replacements);

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Filament\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetDefinition;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\Contracts\PresetContributor;
 use Simtabi\Laranail\Licence\Verifier\Presets\Filament\Presets\FilamentPresetDefinition;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\Contracts\PresetContributor;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetDefinition;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 
 final class FilamentServiceProvider extends ServiceProvider implements PresetContributor
 {
@@ -19,6 +19,6 @@ final class FilamentServiceProvider extends ServiceProvider implements PresetCon
 
     public function presetDefinition(): PresetDefinition
     {
-        return FilamentPresetDefinition::make(dirname(__DIR__, 2) . '/stubs');
+        return FilamentPresetDefinition::make(dirname(__DIR__, 2).'/stubs');
     }
 }
