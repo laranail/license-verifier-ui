@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Validation;
 
+use function dirname;
+
 use RuntimeException;
 use Simtabi\Laranail\Package\Tools\Support\PathResolver;
-
-use function dirname;
 
 /**
  * Harsh validation for the user-chosen output path. The path must be a
@@ -46,7 +46,7 @@ final readonly class PathValidator
         $normalized = str_replace('\\', '/', trim($path, '/'));
 
         foreach (self::PROTECTED_PREFIXES as $protected) {
-            if ($normalized === $protected || str_starts_with($normalized.'/', $protected.'/')) {
+            if ($normalized === $protected || str_starts_with($normalized . '/', $protected . '/')) {
                 return "Refusing to write into the protected directory \"{$protected}\".";
             }
         }

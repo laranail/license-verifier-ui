@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Str;
 use Livewire\Livewire;
+use Illuminate\Support\Str;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 use Simtabi\Laranail\Licence\Verifier\Presets\Generators\GeneratedPackage;
 use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 
 /**
  * Boot the OTHER generated presets (Blade is covered by BootGeneratedPackageTest)
@@ -18,7 +18,7 @@ use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
 function generatePresetPackage(string $key, string $theme, string $namespace): string
 {
     $def = app(PresetRegistry::class)->get($key);
-    $tmp = sys_get_temp_dir().'/lvui-boot-'.$key.'-'.uniqid();
+    $tmp = sys_get_temp_dir() . '/lvui-boot-' . $key . '-' . uniqid();
     mkdir($tmp, 0777, true);
 
     $pkg = new GeneratedPackage(
@@ -27,23 +27,23 @@ function generatePresetPackage(string $key, string $theme, string $namespace): s
         namespace: $namespace,
         path: 'pkg',
         vendor: 'acme',
-        package: 'license-verifier-'.$key,
+        package: 'license-verifier-' . $key,
         basePackage: $def->composerRequire,
         frameworkRequire: $def->frameworkRequire,
     );
 
     app(PresetPackageGenerator::class)->generate($pkg, $def, $tmp, force: true);
 
-    return $tmp.'/pkg';
+    return $tmp . '/pkg';
 }
 
 it('renders every Blade theme unlicensed page', function (string $theme): void {
-    $ns = 'Acme\\BootBladeTheme'.Str::studly($theme);
+    $ns = 'Acme\\BootBladeTheme' . Str::studly($theme);
     $root = generatePresetPackage('blade', $theme, $ns);
 
-    require $root.'/src/Http/Controllers/LicenseController.php';
-    require $root.'/src/Providers/BladePresetServiceProvider.php';
-    $this->app->register($ns.'\\Providers\\BladePresetServiceProvider');
+    require $root . '/src/Http/Controllers/LicenseController.php';
+    require $root . '/src/Providers/BladePresetServiceProvider.php';
+    $this->app->register($ns . '\\Providers\\BladePresetServiceProvider');
 
     $this->get('license/unlicensed')
         ->assertOk()
@@ -54,9 +54,9 @@ it('surfaces the configured redirect_after_activation on the Blade form', functi
     $ns = 'Acme\\BootBladeRedirect';
     $root = generatePresetPackage('blade', 'tailwind', $ns);
 
-    require $root.'/src/Http/Controllers/LicenseController.php';
-    require $root.'/src/Providers/BladePresetServiceProvider.php';
-    $this->app->register($ns.'\\Providers\\BladePresetServiceProvider');
+    require $root . '/src/Http/Controllers/LicenseController.php';
+    require $root . '/src/Providers/BladePresetServiceProvider.php';
+    $this->app->register($ns . '\\Providers\\BladePresetServiceProvider');
 
     config()->set('license-verifier-blade.redirect_after_activation', '/dashboard');
 
@@ -69,9 +69,9 @@ it('boots a generated Vue package and serves the JSON endpoints', function (): v
     $ns = 'Acme\\BootVue';
     $root = generatePresetPackage('vue', 'unstyled', $ns);
 
-    require $root.'/src/Http/Controllers/LicenseController.php';
-    require $root.'/src/Providers/VuePresetServiceProvider.php';
-    $this->app->register($ns.'\\Providers\\VuePresetServiceProvider');
+    require $root . '/src/Http/Controllers/LicenseController.php';
+    require $root . '/src/Providers/VuePresetServiceProvider.php';
+    $this->app->register($ns . '\\Providers\\VuePresetServiceProvider');
 
     $this->getJson('license/status')->assertOk()->assertJsonPath('valid', true);
     $this->postJson('license/activate', ['license_key' => 'DEV-KEY'])
@@ -80,15 +80,15 @@ it('boots a generated Vue package and serves the JSON endpoints', function (): v
 });
 
 it('boots a generated Livewire package and the activation form activates', function (string $theme): void {
-    $ns = 'Acme\\BootLivewire'.Str::studly($theme);
+    $ns = 'Acme\\BootLivewire' . Str::studly($theme);
     $root = generatePresetPackage('livewire', $theme, $ns);
 
-    require $root.'/src/Components/ActivationForm.php';
-    require $root.'/src/Components/StatusWidget.php';
-    require $root.'/src/Providers/LivewirePresetServiceProvider.php';
-    $this->app->register($ns.'\\Providers\\LivewirePresetServiceProvider');
+    require $root . '/src/Components/ActivationForm.php';
+    require $root . '/src/Components/StatusWidget.php';
+    require $root . '/src/Providers/LivewirePresetServiceProvider.php';
+    $this->app->register($ns . '\\Providers\\LivewirePresetServiceProvider');
 
-    Livewire::test($ns.'\\Components\\ActivationForm')
+    Livewire::test($ns . '\\Components\\ActivationForm')
         ->assertOk()
         ->set('licenseKey', 'DEV-KEY')
         ->call('activate')
@@ -99,15 +99,15 @@ it('boots a generated Filament package: provider, plugin and classes load', func
     $ns = 'Acme\\BootFilament';
     $root = generatePresetPackage('filament', 'filament', $ns);
 
-    require $root.'/src/Filament/Pages/LicensePage.php';
-    require $root.'/src/Filament/Widgets/LicenseStatusWidget.php';
-    require $root.'/src/LicenseVerifierPlugin.php';
-    require $root.'/src/Providers/FilamentPresetServiceProvider.php';
-    $this->app->register($ns.'\\Providers\\FilamentPresetServiceProvider');
+    require $root . '/src/Filament/Pages/LicensePage.php';
+    require $root . '/src/Filament/Widgets/LicenseStatusWidget.php';
+    require $root . '/src/LicenseVerifierPlugin.php';
+    require $root . '/src/Providers/FilamentPresetServiceProvider.php';
+    $this->app->register($ns . '\\Providers\\FilamentPresetServiceProvider');
 
-    $pluginClass = $ns.'\\LicenseVerifierPlugin';
+    $pluginClass = $ns . '\\LicenseVerifierPlugin';
 
     expect($pluginClass::make()->getId())->toBe('license-verifier')
-        ->and(class_exists($ns.'\\Filament\\Pages\\LicensePage'))->toBeTrue()
-        ->and(class_exists($ns.'\\Filament\\Widgets\\LicenseStatusWidget'))->toBeTrue();
+        ->and(class_exists($ns . '\\Filament\\Pages\\LicensePage'))->toBeTrue()
+        ->and(class_exists($ns . '\\Filament\\Widgets\\LicenseStatusWidget'))->toBeTrue();
 });

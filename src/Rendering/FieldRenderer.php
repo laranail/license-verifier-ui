@@ -12,7 +12,8 @@ namespace Simtabi\Laranail\Licence\Verifier\Presets\Rendering;
 final class FieldRenderer
 {
     /**
-     * @param  array<int, array<string, mixed>>  $fields
+     * @param array<int, array<string, mixed>> $fields
+     *
      * @return list<array{name: string, label: string, type: string, required: bool, placeholder: string}>
      */
     public function normalize(array $fields): array
@@ -27,20 +28,20 @@ final class FieldRenderer
             }
 
             $normalized[] = [
-                'name' => $name,
-                'label' => (string) ($field['label'] ?? ucfirst(str_replace('_', ' ', $name))),
-                'type' => (string) ($field['type'] ?? 'text'),
-                'required' => (bool) ($field['required'] ?? false),
+                'name'        => $name,
+                'label'       => (string) ($field['label'] ?? ucfirst(str_replace('_', ' ', $name))),
+                'type'        => (string) ($field['type'] ?? 'text'),
+                'required'    => (bool) ($field['required'] ?? false),
                 'placeholder' => (string) ($field['placeholder'] ?? ''),
             ];
         }
 
         if ($normalized === []) {
             $normalized[] = [
-                'name' => 'license_key',
-                'label' => __('license-verifier::license-verifier.license_key'),
-                'type' => 'text',
-                'required' => true,
+                'name'        => 'license_key',
+                'label'       => __('license-verifier::license-verifier.license_key'),
+                'type'        => 'text',
+                'required'    => true,
                 'placeholder' => '',
             ];
         }
