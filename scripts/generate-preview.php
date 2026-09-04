@@ -9,20 +9,20 @@ declare(strict_types=1);
  *   php scripts/generate-preview.php
  */
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
+use Illuminate\Filesystem\Filesystem;
+use Simtabi\Laranail\Licence\Verifier\Presets\Generators\StubRenderer;
+use Simtabi\Laranail\Licence\Verifier\Presets\Generators\GeneratedPackage;
+use Simtabi\Laranail\Licence\Verifier\Presets\Vue\Presets\VuePresetDefinition;
+use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
 use Simtabi\Laranail\Licence\Verifier\Presets\Blade\Presets\BladePresetDefinition;
 use Simtabi\Laranail\Licence\Verifier\Presets\Filament\Presets\FilamentPresetDefinition;
-use Simtabi\Laranail\Licence\Verifier\Presets\Generators\GeneratedPackage;
-use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
-use Simtabi\Laranail\Licence\Verifier\Presets\Generators\StubRenderer;
 use Simtabi\Laranail\Licence\Verifier\Presets\Livewire\Presets\LivewirePresetDefinition;
-use Simtabi\Laranail\Licence\Verifier\Presets\Vue\Presets\VuePresetDefinition;
 
 $root = dirname(__DIR__);
-$out = $root.'/generated-preview';
+$out = $root . '/generated-preview';
 
 $files = new Filesystem;
 $files->deleteDirectory($out);
@@ -31,10 +31,10 @@ $files->ensureDirectoryExists($out);
 $generator = new PresetPackageGenerator(new StubRenderer, $files);
 
 $defs = [
-    'blade' => BladePresetDefinition::make($root.'/presets/blade/stubs'),
-    'livewire' => LivewirePresetDefinition::make($root.'/presets/livewire/stubs'),
-    'filament' => FilamentPresetDefinition::make($root.'/presets/filament/stubs'),
-    'vue' => VuePresetDefinition::make($root.'/presets/vue/stubs'),
+    'blade'    => BladePresetDefinition::make($root . '/presets/blade/stubs'),
+    'livewire' => LivewirePresetDefinition::make($root . '/presets/livewire/stubs'),
+    'filament' => FilamentPresetDefinition::make($root . '/presets/filament/stubs'),
+    'vue'      => VuePresetDefinition::make($root . '/presets/vue/stubs'),
 ];
 
 $packages = 0;
@@ -46,7 +46,7 @@ foreach ($defs as $key => $def) {
         $pkg = new GeneratedPackage(
             presetKey: $key,
             theme: $theme,
-            namespace: 'App\\Licensing\\'.Str::studly($key),
+            namespace: 'App\\Licensing\\' . Str::studly($key),
             path: "{$key}/{$theme}",
             vendor: 'acme',
             package: "license-verifier-{$key}-{$theme}",
@@ -64,7 +64,7 @@ foreach ($defs as $key => $def) {
                 $problems[] = "leftover token: {$file}";
             }
             if (str_ends_with($file, '.php')) {
-                $lint = shell_exec('php -l '.escapeshellarg($file).' 2>&1');
+                $lint = shell_exec('php -l ' . escapeshellarg($file) . ' 2>&1');
                 if (! str_contains((string) $lint, 'No syntax errors')) {
                     $problems[] = "php syntax: {$file}";
                 }
@@ -81,7 +81,7 @@ foreach ($defs as $key => $def) {
 echo "\n{$packages} packages, {$total} files in generated-preview/\n";
 
 if ($problems !== []) {
-    echo "\nPROBLEMS:\n - ".implode("\n - ", $problems)."\n";
+    echo "\nPROBLEMS:\n - " . implode("\n - ", $problems) . "\n";
     exit(1);
 }
 

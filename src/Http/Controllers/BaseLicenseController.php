@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Simtabi\Laranail\Licence\Verifier\Drivers\DriverManager;
+use Simtabi\Laranail\Licence\Verifier\ValueObjects\LicenseRequest;
 use Simtabi\Laranail\Licence\Verifier\Presets\Http\Requests\ActivateLicenseRequest;
 use Simtabi\Laranail\Licence\Verifier\Presets\Support\Concerns\AuthorizesLicenseActions;
-use Simtabi\Laranail\Licence\Verifier\ValueObjects\LicenseRequest;
 
 /**
  * Framework-agnostic JSON endpoints shared by every HTML preset (Blade, Vue).
@@ -29,8 +29,8 @@ abstract class BaseLicenseController extends Controller
         $result = $this->drivers->active()->verify();
 
         return response()->json([
-            'data' => $result->toArray(),
-            'valid' => $result->isUsable(),
+            'data'   => $result->toArray(),
+            'valid'  => $result->isUsable(),
             'fields' => $this->drivers->active()->activationFields(),
         ], $result->isUsable() ? 200 : 422);
     }
@@ -57,7 +57,7 @@ abstract class BaseLicenseController extends Controller
 
         return response()->json([
             'message' => __('license-verifier::license-verifier.deactivated_successfully'),
-            'data' => ['deactivated' => $this->drivers->active()->deactivate(reason: $request->input('reason'))],
+            'data'    => ['deactivated' => $this->drivers->active()->deactivate(reason: $request->input('reason'))],
         ]);
     }
 
