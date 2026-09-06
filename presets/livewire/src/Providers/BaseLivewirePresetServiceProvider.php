@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Livewire\Providers;
 
-use Livewire\Livewire;
 use Override;
+use Livewire\Livewire;
 use Simtabi\Laranail\Licence\Verifier\Presets\Providers\BasePresetServiceProvider;
 
 /**

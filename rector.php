@@ -7,15 +7,15 @@ use Rector\Set\ValueObject\SetList;
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__.'/src',
-        __DIR__.'/config',
-        __DIR__.'/tests',
-        __DIR__.'/presets/blade/src',
-        __DIR__.'/presets/livewire/src',
-        __DIR__.'/presets/filament/src',
-        __DIR__.'/presets/vue/src',
+        __DIR__ . '/src',
+        __DIR__ . '/config',
+        __DIR__ . '/tests',
+        __DIR__ . '/presets/blade/src',
+        __DIR__ . '/presets/livewire/src',
+        __DIR__ . '/presets/filament/src',
+        __DIR__ . '/presets/vue/src',
     ])
-    ->withSkipPath(__DIR__.'/vendor')
+    ->withSkipPath(__DIR__ . '/vendor')
     ->withPhpSets(php84: true)
     ->withSets([
         SetList::CODE_QUALITY,

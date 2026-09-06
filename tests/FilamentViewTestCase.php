@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Tests;
 
-use Filament\Actions\ActionsServiceProvider;
+use Override;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
-use Filament\Infolists\InfolistsServiceProvider;
-use Filament\Notifications\NotificationsServiceProvider;
+use Filament\Tables\TablesServiceProvider;
+use Filament\Actions\ActionsServiceProvider;
 use Filament\Schemas\SchemasServiceProvider;
 use Filament\Support\SupportServiceProvider;
-use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
-use Override;
-use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
-use Simtabi\Laranail\Licence\Verifier\Presets\Generators\GeneratedPackage;
-use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
+use Filament\Infolists\InfolistsServiceProvider;
+use Filament\Notifications\NotificationsServiceProvider;
 use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetRegistry;
+use Simtabi\Laranail\Licence\Verifier\Presets\Generators\GeneratedPackage;
+use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
+use Simtabi\Laranail\Licence\Verifier\Presets\Generators\PresetPackageGenerator;
 
 /**
  * TestCase variant that boots Filament's Blade-component providers so the
@@ -38,7 +38,7 @@ abstract class FilamentViewTestCase extends TestCase
         parent::setUp();
 
         $def = app(PresetRegistry::class)->get('filament');
-        $tmp = sys_get_temp_dir().'/lvui-filament-views-'.uniqid();
+        $tmp = sys_get_temp_dir() . '/lvui-filament-views-' . uniqid();
         mkdir($tmp, 0777, true);
 
         $pkg = new GeneratedPackage(
@@ -54,7 +54,7 @@ abstract class FilamentViewTestCase extends TestCase
 
         app(PresetPackageGenerator::class)->generate($pkg, $def, $tmp, force: true);
 
-        $this->generatedViewsPath = $tmp.'/pkg/resources/views';
+        $this->generatedViewsPath = $tmp . '/pkg/resources/views';
     }
 
     #[Override]

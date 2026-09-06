@@ -27,7 +27,7 @@ final readonly class GeneratedPackage
 
     public function composerName(): string
     {
-        return Str::kebab($this->vendor).'/'.Str::kebab($this->package);
+        return Str::kebab($this->vendor) . '/' . Str::kebab($this->package);
     }
 
     public function vendorKebab(): string
@@ -42,34 +42,34 @@ final readonly class GeneratedPackage
 
     public function providerClass(): string
     {
-        return Str::studly($this->presetKey).'PresetServiceProvider';
+        return Str::studly($this->presetKey) . 'PresetServiceProvider';
     }
 
     /** The namespace the generated provider lives in (always under Providers). */
     public function providerNamespace(): string
     {
-        return $this->namespace.'\\Providers';
+        return $this->namespace . '\\Providers';
     }
 
     /** Fully-qualified class name of the generated provider. */
     public function providerFqcn(): string
     {
-        return $this->providerNamespace().'\\'.$this->providerClass();
+        return $this->providerNamespace() . '\\' . $this->providerClass();
     }
 
     public function viewNamespace(): string
     {
-        return 'laranail-license-verifier-'.$this->presetKey;
+        return 'laranail-license-verifier-' . $this->presetKey;
     }
 
     public function configKey(): string
     {
-        return 'license-verifier-'.$this->presetKey;
+        return 'license-verifier-' . $this->presetKey;
     }
 
     public function assetPath(): string
     {
-        return 'vendor/license-verifier-'.$this->presetKey;
+        return 'vendor/license-verifier-' . $this->presetKey;
     }
 
     public function routeNamePrefix(): string

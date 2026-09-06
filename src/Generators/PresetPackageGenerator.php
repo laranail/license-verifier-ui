@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Generators;
 
-use Illuminate\Filesystem\Filesystem;
-use RuntimeException;
-use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetDefinition;
-
 use function dirname;
+
+use RuntimeException;
+use Illuminate\Filesystem\Filesystem;
+use Simtabi\Laranail\Licence\Verifier\Presets\Presets\PresetDefinition;
 
 /**
  * Renders a preset package from stubs into a destination directory: the preset's
@@ -34,7 +34,7 @@ final readonly class PresetPackageGenerator
         }
 
         $tokens = TokenSet::build($pkg, $def);
-        $targetRoot = rtrim($basePath, '/').'/'.trim($pkg->path, '/');
+        $targetRoot = rtrim($basePath, '/') . '/' . trim($pkg->path, '/');
 
         if ($this->files->isDirectory($targetRoot) && ! $force && $this->files->files($targetRoot) !== []) {
             throw new RuntimeException("Target \"{$pkg->path}\" already exists and is not empty (use force to overwrite).");
@@ -49,11 +49,11 @@ final readonly class PresetPackageGenerator
             $leftover = $this->renderer->unresolved($rendered);
             if ($leftover !== []) {
                 throw new RuntimeException(
-                    'Unresolved tokens '.implode(', ', $leftover).' in stub '.basename($stubFile),
+                    'Unresolved tokens ' . implode(', ', $leftover) . ' in stub ' . basename($stubFile),
                 );
             }
 
-            $destination = $targetRoot.'/'.$this->renderer->render($outputRelative, $tokens);
+            $destination = $targetRoot . '/' . $this->renderer->render($outputRelative, $tokens);
             $this->files->ensureDirectoryExists(dirname($destination));
             $this->files->put($destination, $rendered);
             $written[] = $destination;
@@ -73,22 +73,22 @@ final readonly class PresetPackageGenerator
         $plan = [];
 
         // 1. Generic skeleton, authored per preset under its own stubs/scaffold.
-        $plan[$def->stubsPath.'/scaffold/composer.json.stub'] = 'composer.json';
-        $plan[$def->stubsPath.'/scaffold/README.md.stub'] = 'README.md';
-        $plan[$def->stubsPath.'/scaffold/gitignore.stub'] = '.gitignore';
+        $plan[$def->stubsPath . '/scaffold/composer.json.stub'] = 'composer.json';
+        $plan[$def->stubsPath . '/scaffold/README.md.stub'] = 'README.md';
+        $plan[$def->stubsPath . '/scaffold/gitignore.stub'] = '.gitignore';
 
         // 2. Preset-specific scaffold (PHP, routes, config) via the definition's map.
         foreach ($def->fileMap as $stubRelative => $outputRelative) {
-            $plan[$def->stubsPath.'/'.$stubRelative] = $outputRelative;
+            $plan[$def->stubsPath . '/' . $stubRelative] = $outputRelative;
         }
 
         // 3. The chosen theme: every file under themes/<theme>/ → resources/<rest>.
-        $themeRoot = $def->stubsPath.'/themes/'.$pkg->theme;
+        $themeRoot = $def->stubsPath . '/themes/' . $pkg->theme;
         if ($this->files->isDirectory($themeRoot)) {
             foreach ($this->files->allFiles($themeRoot) as $file) {
                 $relative = ltrim(str_replace($themeRoot, '', $file->getPathname()), '/');
                 $relative = preg_replace('/\.stub$/', '', $relative);
-                $plan[$file->getPathname()] = 'resources/'.$relative;
+                $plan[$file->getPathname()] = 'resources/' . $relative;
             }
         }
 

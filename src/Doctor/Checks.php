@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Licence\Verifier\Presets\Doctor;
 
 use Simtabi\Laranail\Licence\Verifier\LicenseManager;
-use Simtabi\Laranail\Package\Tools\Services\Doctor\Checks\SoftDependencyCheck;
 use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorCheck;
+use Simtabi\Laranail\Package\Tools\Services\Doctor\Checks\SoftDependencyCheck;
 
 /**
  * The canonical license-verifier-ui health checks — one list reused by the
