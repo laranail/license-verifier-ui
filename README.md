@@ -1,9 +1,10 @@
 # laranail/license-verifier-ui
 
-[![Latest version on Packagist](https://img.shields.io/packagist/v/laranail/license-verifier-ui.svg)](https://packagist.org/packages/laranail/license-verifier-ui)
 [![Tests](https://github.com/laranail/license-verifier-ui/actions/workflows/tests.yml/badge.svg)](https://github.com/laranail/license-verifier-ui/actions/workflows/tests.yml)
 [![Static analysis](https://github.com/laranail/license-verifier-ui/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/laranail/license-verifier-ui/actions/workflows/static-analysis.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+`laranail/license-verifier-ui` is not published to Packagist, so there is no registry-version badge to show — see [Install](#install).
 
 > The core UI engine for [`laranail/license-verifier`](https://opensource.simtabi.com/documentation/laranail/license-verifier/) — a generator that scaffolds owned, themeable preset packages (Blade, Livewire, Filament, Vue) into your app under your namespace, at your path, in the CSS framework you choose. The generated preset subclasses this core, so you own a tiny surface while the logic and updates live here.
 
