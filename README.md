@@ -18,16 +18,22 @@ Require the preset you want — each is its own package that pulls this core aut
 composer require laranail/license-verifier-ui-blade   # or -livewire / -filament / -vue
 ```
 
-## Quick start
+## Quick start guide and usage
 
-Generate your owned preset package, then render it:
+### Getting started
+
+Generate your owned preset package:
 
 ```bash
 php artisan laranail::license-verifier-ui.install blade
 ```
 
 Answer the prompts (theme, composer name, namespace, path, register mode) and the generator
-writes a small, self-contained Composer package into your app — auto-discovered, ready to use:
+writes a small, self-contained Composer package into your app — auto-discovered, ready to use.
+
+### Usage
+
+Render it:
 
 ```blade
 @include('license-verifier-blade::license-form')
