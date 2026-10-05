@@ -35,6 +35,7 @@
         "illuminate/console": "^13.0",
         "illuminate/http": "^13.0",
         "illuminate/filesystem": "^13.0",
+        "laravel/framework": "^13.0",
         "laranail/package-tools": "^0.1",
         "laranail/license-verifier": "^0.1",
         "laranail/console": "^0.1"

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- `laravel/framework ^13.0` is now declared in `require`. `src/` uses `Dispatchable`, `FormRequest` from `Illuminate\Foundation`, which no `illuminate/*` component ships, so the dependency only arrived through the host application.
 - **Newly generated packages name their routes `laranail-license-verifier-ui.*`** (Blade) and
   `laranail-license-verifier-ui-vue.*` (Vue), instead of `license-verifier.*` and
   `license-verifier-vue.*`. Route names share one flat registry with the host application and
