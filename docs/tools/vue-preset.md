@@ -9,9 +9,13 @@ Themes: tailwind, bootstrap, unstyled, custom.
 
 - `src/Providers/<Ns>PresetServiceProvider` — registers the gated JSON route group.
 - `src/Http/Controllers/LicenseController` — extends the core `BaseLicenseController`.
-- `routes/web.php` — `status`, `activate`, `deactivate` (route names `license-verifier-vue.*`).
+- `routes/web.php` — `status`, `activate`, `deactivate` (route names `laranail-license-verifier-ui-vue.*`).
 - `config/license-verifier-vue.php`, `resources/views/mount.blade.php`,
   `resources/js/{entry.js, components/LicenseForm.vue}`, and a `package.json`.
+
+> A package generated before 2026-10 names its routes `license-verifier-vue.*`. That prefix is
+> written into its own `config/license-verifier-vue.php` and views, so it keeps working
+> unchanged; regenerate, or set `routes.name` and update the views, to move to the scoped prefix.
 
 ## Use
 

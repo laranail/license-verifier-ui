@@ -72,7 +72,27 @@ final readonly class GeneratedPackage
         return 'vendor/license-verifier-' . $this->presetKey;
     }
 
+    /**
+     * Route-name prefix baked into a newly generated package's config and views.
+     *
+     * Vendor-scoped, because route names share one flat registry with the host
+     * and every other package. Packages generated before this changed carry
+     * `license-verifier.` / `license-verifier-vue.` in their own config and
+     * views, and keep them: the base providers read the prefix from that config,
+     * so nothing about an existing package changes. See {@see self::legacyRouteNamePrefix()}.
+     */
     public function routeNamePrefix(): string
+    {
+        return $this->presetKey === 'vue'
+            ? 'laranail-license-verifier-ui-vue.'
+            : 'laranail-license-verifier-ui.';
+    }
+
+    /**
+     * The prefix this generator wrote before it was vendor-scoped. Still the
+     * base providers' fallback when a package's config has no `routes.name`.
+     */
+    public function legacyRouteNamePrefix(): string
     {
         return $this->presetKey === 'vue' ? 'license-verifier-vue.' : 'license-verifier.';
     }

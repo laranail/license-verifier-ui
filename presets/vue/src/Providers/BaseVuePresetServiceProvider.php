@@ -27,6 +27,8 @@ abstract class BaseVuePresetServiceProvider extends BasePresetServiceProvider
             return;
         }
 
+        // A newly generated package sets `laranail-license-verifier-ui-vue.` in its own config.
+        // This legacy default is kept so a package generated earlier keeps its route names.
         Route::group([
             'prefix'     => config($this->configKey() . '.routes.prefix', 'license'),
             'as'         => config($this->configKey() . '.routes.name', 'license-verifier-vue.'),
