@@ -16,6 +16,16 @@ use Simtabi\Laranail\Licence\Verifier\ValueObjects\LicenseRequest;
  */
 abstract class BaseLicensePage extends Page
 {
+    /** Browser event dispatched after the licence is activated or deactivated. */
+    public const string LICENSE_UPDATED_EVENT = 'laranail-license-verifier-ui:license-updated';
+
+    /**
+     * @deprecated Since 0.1 (2026-10). The bare `license-updated` browser event, still dispatched beside
+     *             {@see self::LICENSE_UPDATED_EVENT} so existing listeners keep working. Removed no
+     *             earlier than the next minor after 0.1.
+     */
+    public const string LEGACY_LICENSE_UPDATED_EVENT = 'license-updated';
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-key';
 
     public ?string $licenseKey = null;
@@ -51,12 +61,18 @@ abstract class BaseLicensePage extends Page
             client: $this->client,
         ));
 
-        $this->dispatch('license-updated', valid: $result->isUsable());
+        $this->dispatchLicenseUpdated($result->isUsable());
     }
 
     public function deactivate(): void
     {
         app(DriverManager::class)->active()->deactivate();
-        $this->dispatch('license-updated', valid: false);
+        $this->dispatchLicenseUpdated(false);
+    }
+
+    private function dispatchLicenseUpdated(bool $valid): void
+    {
+        $this->dispatch(self::LICENSE_UPDATED_EVENT, valid: $valid);
+        $this->dispatch(self::LEGACY_LICENSE_UPDATED_EVENT, valid: $valid); // @phpstan-ignore classConstant.deprecated
     }
 }
