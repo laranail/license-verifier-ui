@@ -43,7 +43,7 @@ it('renders every Blade theme unlicensed page', function (string $theme): void {
 
     require $root . '/src/Http/Controllers/LicenseController.php';
     require $root . '/src/Providers/BladePresetServiceProvider.php';
-    $this->app->register($ns . '\\Providers\\BladePresetServiceProvider');
+    registerGeneratedProvider($ns . '\\Providers\\BladePresetServiceProvider');
 
     $this->get('license/unlicensed')
         ->assertOk()
@@ -56,7 +56,7 @@ it('surfaces the configured redirect_after_activation on the Blade form', functi
 
     require $root . '/src/Http/Controllers/LicenseController.php';
     require $root . '/src/Providers/BladePresetServiceProvider.php';
-    $this->app->register($ns . '\\Providers\\BladePresetServiceProvider');
+    registerGeneratedProvider($ns . '\\Providers\\BladePresetServiceProvider');
 
     config()->set('license-verifier-blade.redirect_after_activation', '/dashboard');
 
@@ -71,7 +71,7 @@ it('boots a generated Vue package and serves the JSON endpoints', function (): v
 
     require $root . '/src/Http/Controllers/LicenseController.php';
     require $root . '/src/Providers/VuePresetServiceProvider.php';
-    $this->app->register($ns . '\\Providers\\VuePresetServiceProvider');
+    registerGeneratedProvider($ns . '\\Providers\\VuePresetServiceProvider');
 
     $this->getJson('license/status')->assertOk()->assertJsonPath('valid', true);
     $this->postJson('license/activate', ['license_key' => 'DEV-KEY'])
@@ -86,7 +86,7 @@ it('boots a generated Livewire package and the activation form activates', funct
     require $root . '/src/Components/ActivationForm.php';
     require $root . '/src/Components/StatusWidget.php';
     require $root . '/src/Providers/LivewirePresetServiceProvider.php';
-    $this->app->register($ns . '\\Providers\\LivewirePresetServiceProvider');
+    registerGeneratedProvider($ns . '\\Providers\\LivewirePresetServiceProvider');
 
     Livewire::test($ns . '\\Components\\ActivationForm')
         ->assertOk()
@@ -103,7 +103,7 @@ it('boots a generated Filament package: provider, plugin and classes load', func
     require $root . '/src/Filament/Widgets/LicenseStatusWidget.php';
     require $root . '/src/LicenseVerifierPlugin.php';
     require $root . '/src/Providers/FilamentPresetServiceProvider.php';
-    $this->app->register($ns . '\\Providers\\FilamentPresetServiceProvider');
+    registerGeneratedProvider($ns . '\\Providers\\FilamentPresetServiceProvider');
 
     $pluginClass = $ns . '\\LicenseVerifierPlugin';
 

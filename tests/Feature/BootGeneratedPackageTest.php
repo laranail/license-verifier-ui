@@ -34,7 +34,7 @@ it('boots a generated blade package and serves a working license UI', function (
     // and register the provider the same way Laravel would.
     require $root . '/src/Http/Controllers/LicenseController.php';
     require $root . '/src/Providers/BladePresetServiceProvider.php';
-    $this->app->register('Acme\\BootBlade\\Providers\\BladePresetServiceProvider');
+    registerGeneratedProvider('Acme\\BootBlade\\Providers\\BladePresetServiceProvider');
 
     // The unlicensed page renders the driver-aware form...
     $this->get('license/unlicensed')
