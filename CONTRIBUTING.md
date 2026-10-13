@@ -13,8 +13,9 @@ Thanks for contributing to `laranail/license-verifier-ui`.
 ## Layout
 
 This is a **monorepo whose root is the core package**. The core engine lives in `src/`; each
-preset is a publishable path sub-package under `presets/<preset>/`. Run everything from the root
-(the root `composer.json` wires the preset packages in via dev path repositories).
+preset is a publishable sub-package under `presets/<preset>/`. Run everything from the root
+(the root `composer.json` loads each preset's `src/` through `autoload-dev`, so there is no
+`composer` step per preset).
 
 ```
 src/                     core engine: Generators/, Presets/, Themes/, Validation/, Http/, Providers/, Console/

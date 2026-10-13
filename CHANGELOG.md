@@ -24,6 +24,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Dependabot's composer update no longer fails with `dependency_file_not_resolvable`. The four
+  presets were pulled in as `require-dev` path repositories, and each requires
+  `laranail/license-verifier-ui ^0.1` back. Dependabot cannot set `COMPOSER_ROOT_VERSION`, so
+  Composer saw the root as `1.0.0` and no preset could install. The root now loads each preset's
+  `src/` through `autoload-dev` (PSR-4), so no root version is needed, and the
+  `COMPOSER_ROOT_VERSION` workaround is gone from CI. The published package is unchanged.
 - The end-to-end boot tests register each generated provider and then refresh the route name
   lookups, as Laravel does after boot. They registered it after boot without refreshing, and
   passed only while nothing had resolved `url` first; on a fresh dependency set seven went red

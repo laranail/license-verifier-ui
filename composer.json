@@ -42,10 +42,6 @@
     },
     "require-dev": {
         "filament/filament": "^4.0 || ^3.2",
-        "laranail/license-verifier-ui-blade": "^0.1",
-        "laranail/license-verifier-ui-filament": "^0.1",
-        "laranail/license-verifier-ui-livewire": "^0.1",
-        "laranail/license-verifier-ui-vue": "^0.1",
         "larastan/larastan": "^3.0",
         "laravel/pint": "^1.30",
         "livewire/livewire": "^3.5",
@@ -75,22 +71,6 @@
             "url": "https://github.com/laranail/license-verifier"
         },
         {
-            "type": "path",
-            "url": "presets/blade"
-        },
-        {
-            "type": "path",
-            "url": "presets/livewire"
-        },
-        {
-            "type": "path",
-            "url": "presets/filament"
-        },
-        {
-            "type": "path",
-            "url": "presets/vue"
-        },
-        {
             "type": "composer",
             "url": "https://repo.packagist.org",
             "exclude": [
@@ -108,7 +88,11 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Tests\\": "tests/"
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Tests\\": "tests/",
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Blade\\": "presets/blade/src/",
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Filament\\": "presets/filament/src/",
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Livewire\\": "presets/livewire/src/",
+            "Simtabi\\Laranail\\Licence\\Verifier\\Presets\\Vue\\": "presets/vue/src/"
         }
     },
     "scripts": {

@@ -5,10 +5,17 @@ How the core engine, the preset packages, and the generated package relate.
 ## Monorepo, root = core
 
 This repository **is** the published core package `laranail/license-verifier-ui`, and also the
-monorepo root. The four preset packages are publishable path sub-packages under `presets/*`. The
-root `composer.json` declares dev-only path repositories to `presets/*` and `require-dev`s the
-preset packages so a single test suite covers everything. Consumers of the published core ignore
-those dev `repositories`/`require-dev`.
+monorepo root. The four preset packages are publishable sub-packages under `presets/*`, each with
+its own `composer.json`. The root `composer.json` maps each preset's namespace to its `src/` in
+`autoload-dev` (PSR-4), so a single test suite covers everything. The test case registers the
+preset service providers itself. Consumers of the published core ignore `autoload-dev`.
+
+The presets are deliberately **not** wired in as `path` repositories under `require-dev`. Each
+preset requires `laranail/license-verifier-ui ^0.1` back, so that setup only resolves when Composer
+is told the root's version (`COMPOSER_ROOT_VERSION`). Dependabot cannot set it, sees the root as
+`1.0.0`, and fails with `dependency_file_not_resolvable`. Loading the source through
+`autoload-dev` needs no root version at all. The preset's own dependencies (`filament/filament`,
+`livewire/livewire`) are in the root `require-dev` for the same reason.
 
 ## Core (`src/`)
 
