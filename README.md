@@ -87,7 +87,8 @@ Pre-1.0 (`0.x`) — the public API may change between minor versions. Pin a vers
 ## Local development
 
 This repo is a **monorepo whose root is the core package**; the preset packages live under
-`presets/*` as path sub-packages, and a single suite covers everything. Run it from the root:
+`presets/*` as sub-packages loaded through `autoload-dev`, and a single suite covers everything.
+Run it from the root:
 
 ```bash
 composer test     # Pest
